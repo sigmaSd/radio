@@ -27,14 +27,22 @@ async function getStations() {
 }
 
 const Station = ({ station }: { station: StationType }) => {
-  const playStation = (station: string, src: string) => {
+  const playStation = (station: StationType) => {
     const audioDiv = document.getElementById("audioDiv") as HTMLDivElement;
     audioDiv.style.display = "flex";
     const audioImg = document.getElementById("audioImg") as HTMLImageElement;
-    audioImg.src = src;
+    if (station.favicon !== "") {
+      audioImg.alt = "";
+      audioImg.src = station.favicon;
+      audioImg.style.height = "150px";
+    } else {
+      audioImg.src = "";
+      audioImg.alt = station.name;
+      audioImg.style.height = "40px";
+    }
     const audio = document.getElementById("audio") as HTMLAudioElement;
     audio.setAttribute("controls", "");
-    audio.src = station;
+    audio.src = station.url;
     audio.play();
   };
 
@@ -57,7 +65,7 @@ const Station = ({ station }: { station: StationType }) => {
     <div>
       <button
         style={styles}
-        onClick={() => playStation(station.url, station.favicon)}
+        onClick={() => playStation(station)}
       >
         {station.favicon !== "" ? "" : station.name}
       </button>

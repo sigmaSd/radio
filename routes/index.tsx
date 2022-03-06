@@ -7,11 +7,13 @@ const AudioPlay = () => {
     width: "150px",
     height: "150px",
     padding: "5px",
+    fontSize: "20px",
+    fontWeight: "bold",
   };
   const divStyle = {
     display: "none",
     flexWrap: "wrap",
-    flexDirection: "column",
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   };
