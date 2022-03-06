@@ -7,6 +7,10 @@ interface StationType {
   favicon: string;
 }
 
+const HEADERS = {
+  "User-Agent": "https://github.com/sigmaSd/freshRadio",
+};
+
 async function getStations() {
   const cn = Intl.DateTimeFormat()
     .resolvedOptions()
@@ -14,6 +18,9 @@ async function getStations() {
   const stations: StationType[] = await (
     await fetch(
       `https://de1.api.radio-browser.info/json/stations/bycountry/${cn}`,
+      {
+        "headers": HEADERS,
+      },
     )
   ).json();
   return stations;
@@ -124,9 +131,7 @@ function SearchStations() {
         await fetch(
           `https://de1.api.radio-browser.info/json/stations/${urlMethod}/${input}`,
           {
-            "headers": {
-              "User-Agent": "https://github.com/sigmaSd/freshRadio",
-            },
+            "headers": HEADERS,
           },
         )
       ).json(),
