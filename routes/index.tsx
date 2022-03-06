@@ -3,7 +3,24 @@ import { h, Head } from "../client_deps.ts";
 import StationMain from "../islands/StatioMain.tsx";
 
 const AudioPlay = () => {
-  return <audio id="audio" />;
+  const styles = {
+    width: "150px",
+    height: "150px",
+    padding: "5px",
+  };
+  const divStyle = {
+    display: "none",
+    flexWrap: "wrap",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+  return (
+    <div id="audioDiv" style={divStyle}>
+      <img id="audioImg" style={styles} />
+      <audio id="audio" controls />
+    </div>
+  );
 };
 
 export default function Home() {
