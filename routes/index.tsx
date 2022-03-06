@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from "../client_deps.ts";
+import { h, Head } from "../client_deps.ts";
 import StationMain from "../islands/StatioMain.tsx";
 
 const AudioPlay = () => {
@@ -20,10 +20,15 @@ export default function Home() {
   };
 
   return (
-    <div style={mainStyle}>
-      <h1 style={h1Style}>Radio</h1>
-      <AudioPlay />
-      <StationMain />
+    <div>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div style={mainStyle}>
+        <h1 style={h1Style}>Radio</h1>
+        <AudioPlay />
+        <StationMain />
+      </div>
     </div>
   );
 }
