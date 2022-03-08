@@ -1,8 +1,9 @@
 /** @jsx h */
 import { h, Head } from "../client_deps.ts";
+import NavigationBar from "../components/NavigationBar.tsx";
 import StationMain from "../islands/StatioMain.tsx";
 
-const AudioPlay = () => {
+export const AudioPlay = () => {
   const styles = {
     width: "150px",
     height: "150px",
@@ -43,6 +44,7 @@ export default function Home() {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <NavigationBar />
       <div style={mainStyle}>
         <h1 style={h1Style}>Radio</h1>
         <AudioPlay />

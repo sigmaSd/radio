@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h, useEffect, useState } from "../client_deps.ts";
 
-interface StationType {
+export interface StationType {
   name: string;
   url: string;
   favicon: string;
@@ -11,10 +11,12 @@ const HEADERS = {
   "User-Agent": "https://github.com/sigmaSd/freshRadio",
 };
 
-async function getStations() {
-  const cn = Intl.DateTimeFormat()
-    .resolvedOptions()
-    .timeZone.split("/")[1];
+export async function getStations(cn: string | undefined) {
+  if (cn === undefined) {
+    cn = Intl.DateTimeFormat()
+      .resolvedOptions()
+      .timeZone.split("/")[1];
+  }
   const stations: StationType[] = await (
     await fetch(
       `https://de1.api.radio-browser.info/json/stations/bycountry/${cn}`,
@@ -73,9 +75,9 @@ const Station = ({ station }: { station: StationType }) => {
     </div>
   );
 };
-const Stations = (
+export function Stations(
   { title, stations }: { title: string; stations: StationType[] },
-) => {
+) {
   const pageNumItems = 20;
   const [pager, setPager] = useState(0);
   const [displayStations, setDisplayStations] = useState<StationType[]>(
@@ -108,7 +110,7 @@ const Stations = (
         <button onClick={backPage}>back</button>}
     </div>
   );
-};
+}
 
 function SearchStations() {
   const [input, setInput] = useState("");
@@ -168,18 +170,23 @@ function SearchStations() {
   );
 }
 
-export default function StationMain() {
+export default function StationMain(
+  { country, noSearch }: { country?: string; noSearch?: boolean },
+) {
   const [stations, setStations] = useState<StationType[]>([]);
   useEffect(() => {
-    getStations().then((stations) => {
+    getStations(country).then((stations) => {
       setStations(stations);
     });
   }, []);
+  if (noSearch === undefined) {
+    noSearch = false;
+  }
   return (
     <div>
       {stations !== null &&
         <Stations title="Local Stations" stations={stations} />}
-      <SearchStations />
+      {!noSearch && <SearchStations />}
     </div>
   );
 }

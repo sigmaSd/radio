@@ -2,12 +2,16 @@
 // This file SHOULD be checked into source version control.
 // To update this file, run `fresh routes`.
 
-import * as $0 from "./routes/index.tsx";
+import * as $0 from "./routes/map.tsx";
+import * as $1 from "./routes/index.tsx";
+import * as $2 from "./routes/byCountry/[country].tsx";
 import * as $$0 from "./islands/StatioMain.tsx";
 
 const manifest = {
   routes: {
-    "./routes/index.tsx": $0,
+    "./routes/map.tsx": $0,
+    "./routes/index.tsx": $1,
+    "./routes/byCountry/[country].tsx": $2,
   },
   islands: {
     "./islands/StatioMain.tsx": $$0,
