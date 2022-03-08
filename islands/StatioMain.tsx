@@ -171,7 +171,11 @@ function SearchStations() {
 }
 
 export default function StationMain(
-  { country, noSearch }: { country?: string; noSearch?: boolean },
+  { title, country, noSearch }: {
+    title?: string;
+    country?: string;
+    noSearch?: boolean;
+  },
 ) {
   const [stations, setStations] = useState<StationType[]>([]);
   useEffect(() => {
@@ -185,7 +189,12 @@ export default function StationMain(
   return (
     <div>
       {stations !== null &&
-        <Stations title="Local Stations" stations={stations} />}
+        (
+          <Stations
+            title={title ? title : "Local Stations"}
+            stations={stations}
+          />
+        )}
       {!noSearch && <SearchStations />}
     </div>
   );

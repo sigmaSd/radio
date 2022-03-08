@@ -31,7 +31,7 @@ async function drawMap() {
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
   activeMark = L.marker(latlon).addTo(map)
-    .bindPopup("Selected country")
+    .bindPopup(`Selected '${cn}'`)
     .openPopup();
 }
 
@@ -41,7 +41,7 @@ async function onMapClick(e) {
   const latlon = await getLatLon(cn);
   activeMark.remove();
   activeMark = L.marker(latlon).addTo(map)
-    .bindPopup("Selected country")
+    .bindPopup(`Selected '${cn}'`)
     .openPopup();
 }
 

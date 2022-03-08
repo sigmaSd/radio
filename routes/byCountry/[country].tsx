@@ -16,7 +16,7 @@ export default function StationsFromMap(props: PageProps) {
       <NavigationBar />
       <main style={mainStyle}>
         <AudioPlay />
-        <StationMain noSearch country={country} />
+        <StationMain noSearch title={country} country={country} />
       </main>
     </div>
   );
