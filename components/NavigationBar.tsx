@@ -12,16 +12,40 @@ export default function NavigationBar() {
       name: "Map",
       href: "/map",
     },
+    {
+      name: "Github",
+      href: "https://github.com/sigmaSd/freshRadio",
+    },
   ];
+
+  const ulS = {
+    listStyleType: "none",
+    margin: "0",
+    padding: "0",
+    overflow: "hidden",
+    backgroundColor: "#333",
+  };
+  const liS = {
+    float: "left",
+    display: "block",
+    color: "white",
+    textAlign: "center",
+    textDecoration: "none",
+  };
+  const aS = {
+    display: "block",
+    color: "white",
+    textAlign: "center",
+    padding: "14px 16px",
+    textDecoration: "none",
+  };
 
   return (
     <nav>
-      <ul>
+      <ul style={ulS}>
         {items.map((item) => (
-          <li>
-            <a
-              href={item.href}
-            >
+          <li style={liS}>
+            <a style={aS} href={item.href}>
               {item.name}
             </a>
           </li>
