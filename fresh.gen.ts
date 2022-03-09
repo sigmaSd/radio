@@ -3,18 +3,22 @@
 // To update this file, run `fresh routes`.
 
 import * as $0 from "./routes/map.tsx";
-import * as $1 from "./routes/index.tsx";
-import * as $2 from "./routes/byCountry/[country].tsx";
-import * as $$0 from "./islands/StatioMain.tsx";
+import * as $1 from "./routes/search.tsx";
+import * as $2 from "./routes/index.tsx";
+import * as $3 from "./routes/byCountry/[country].tsx";
+import * as $$0 from "./islands/StationSearch.tsx";
+import * as $$1 from "./islands/StatioMain.tsx";
 
 const manifest = {
   routes: {
     "./routes/map.tsx": $0,
-    "./routes/index.tsx": $1,
-    "./routes/byCountry/[country].tsx": $2,
+    "./routes/search.tsx": $1,
+    "./routes/index.tsx": $2,
+    "./routes/byCountry/[country].tsx": $3,
   },
   islands: {
-    "./islands/StatioMain.tsx": $$0,
+    "./islands/StationSearch.tsx": $$0,
+    "./islands/StatioMain.tsx": $$1,
   },
   baseUrl: import.meta.url,
 };

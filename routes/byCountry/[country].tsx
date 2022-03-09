@@ -4,7 +4,7 @@ import NavigationBar from "../../components/NavigationBar.tsx";
 import StationMain from "../../islands/StatioMain.tsx";
 import { AudioPlay } from "../index.tsx";
 
-export default function StationsFromMap(props: PageProps) {
+export default function Page(props: PageProps) {
   const { country } = props.params;
   const mainStyle = {
     textAlign: "center",
@@ -16,7 +16,7 @@ export default function StationsFromMap(props: PageProps) {
       <NavigationBar />
       <main style={mainStyle}>
         <AudioPlay />
-        <StationMain noSearch title={country} country={country} />
+        <StationMain title={country} country={country} />
       </main>
     </div>
   );

@@ -9,6 +9,10 @@ export default function NavigationBar() {
       href: "/",
     },
     {
+      name: "Search",
+      href: "/search",
+    },
+    {
       name: "Map",
       href: "/map",
     },
