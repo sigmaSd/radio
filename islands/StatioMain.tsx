@@ -65,9 +65,9 @@ const Station = ({ station }: { station: StationType }) => {
     borderRadius: "5px",
     margin: "5px",
     backgroundColor: "#ccc",
-    fontWeight: "medium",
-    fontSize: "22px",
-    color: "#fb3f0a",
+    fontWeight: "bolder",
+    fontSize: "1em",
+    color: "#422800",
   };
 
   return (
@@ -125,9 +125,9 @@ export function Stations(
   };
 
   const h2Style = {
-    "color": "#fb3e00",
-    "fontSize": "4em",
-    "fontWeight": "80",
+    "color": "#ab3400",
+    "fontSize": "2em",
+    "fontWeight": "light",
   };
 
   return (
