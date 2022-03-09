@@ -61,6 +61,13 @@ const Station = ({ station }: { station: StationType }) => {
     width: "150px",
     height: "150px",
     backgroundSize: "150px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    margin: "5px",
+    backgroundColor: "#ccc",
+    fontWeight: "medium",
+    fontSize: "22px",
+    color: "#fb3f0a",
   };
 
   return (
@@ -71,7 +78,7 @@ const Station = ({ station }: { station: StationType }) => {
       >
         {station.favicon !== "" ? "" : station.name}
       </button>
-      <p>{stationName(station.name)}</p>
+      <p style={{ fontWeight: "bold" }}>{stationName(station.name)}</p>
     </div>
   );
 };
@@ -98,16 +105,41 @@ export function Stations(
     flexWrap: "wrap",
   };
 
+  const button74 = {
+    backgroundColor: "#fbeee0",
+    border: "2px solid #422800",
+    borderRadius: "30px",
+    boxShadow: "#422800 4px 4px 0 0",
+    color: "#422800",
+    cursor: "pointer",
+    display: "inline-block",
+    fontWeight: "600",
+    fontSize: "18px",
+    padding: "0 18px",
+    lineHeight: "50px",
+    textAlign: "center",
+    textDecoration: "none",
+    userSelect: "none",
+    webkitUserSelect: "none",
+    touchAction: "manipulation",
+  };
+
+  const h2Style = {
+    "color": "#fb3e00",
+    "fontSize": "4em",
+    "fontWeight": "80",
+  };
+
   return (
     <div>
-      <h2>{title}</h2>
+      <h2 style={h2Style}>{title}</h2>
       <div style={divStyle}>
         {displayStations.map((station) => <Station station={station} />)}
       </div>
       {(pager + pageNumItems < stations.length) &&
-        <button onClick={nextPage}>next</button>}
+        <button style={button74} onClick={nextPage}>next</button>}
       {pager > 0 &&
-        <button onClick={backPage}>back</button>}
+        <button style={button74} onClick={backPage}>back</button>}
     </div>
   );
 }

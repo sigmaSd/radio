@@ -42,17 +42,34 @@ export default function SearchStations() {
       ).json(),
     );
   }
+  const button54 = {
+    fontFamily: '"Open Sans", sans-serif',
+    fontSize: "16px",
+    letterSpacing: "2px",
+    textDecoration: "none",
+    textTransform: "uppercase",
+    color: "#000",
+    cursor: "pointer",
+    border: "3px solid",
+    padding: "0.25em 0.5em",
+    boxShadow:
+      "1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px",
+    position: "relative",
+    userSelect: "none",
+    webkitUserSelect: "none",
+    touchAction: "manipulation",
+  };
 
   return (
     <div>
       <h2>Search Stations</h2>
-      <input onChange={handleChange} value={input} />
-      <select onChange={handleMethod}>
+      <input style={button54} onChange={handleChange} value={input} />
+      <select style={button54} onChange={handleMethod}>
         <option>Country</option>
         <option>Language</option>
         <option>Name</option>
       </select>
-      <button onClick={search}>Search</button>
+      <button style={button54} onClick={search}>Search</button>
       {stations.length !== 0 && (
         <Stations title="Search Results" stations={stations} />
       )}
