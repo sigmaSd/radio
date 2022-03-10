@@ -6,6 +6,24 @@ export interface StationType {
   url: string;
   favicon: string;
 }
+export const button74 = {
+  backgroundColor: "#fbeee0",
+  border: "2px solid #422800",
+  borderRadius: "30px",
+  boxShadow: "#422800 4px 4px 0 0",
+  color: "#422800",
+  cursor: "pointer",
+  display: "inline-block",
+  fontWeight: "600",
+  fontSize: "18px",
+  padding: "0 18px",
+  lineHeight: "50px",
+  textAlign: "center",
+  textDecoration: "none",
+  userSelect: "none",
+  webkitUserSelect: "none",
+  touchAction: "manipulation",
+};
 
 export const HEADERS = {
   "User-Agent": "https://github.com/sigmaSd/freshRadio",
@@ -111,25 +129,6 @@ export function Stations(
   const divStyle = {
     display: "flex",
     flexWrap: "wrap",
-  };
-
-  const button74 = {
-    backgroundColor: "#fbeee0",
-    border: "2px solid #422800",
-    borderRadius: "30px",
-    boxShadow: "#422800 4px 4px 0 0",
-    color: "#422800",
-    cursor: "pointer",
-    display: "inline-block",
-    fontWeight: "600",
-    fontSize: "18px",
-    padding: "0 18px",
-    lineHeight: "50px",
-    textAlign: "center",
-    textDecoration: "none",
-    userSelect: "none",
-    webkitUserSelect: "none",
-    touchAction: "manipulation",
   };
 
   const h2Style = {

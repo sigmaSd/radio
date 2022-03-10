@@ -13,6 +13,10 @@ export default function NavigationBar() {
       href: "/search",
     },
     {
+      name: "Top",
+      href: "/top",
+    },
+    {
       name: "Map",
       href: "/map",
     },

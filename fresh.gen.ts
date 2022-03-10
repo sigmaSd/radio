@@ -5,20 +5,24 @@
 import * as $0 from "./routes/map.tsx";
 import * as $1 from "./routes/search.tsx";
 import * as $2 from "./routes/index.tsx";
-import * as $3 from "./routes/byCountry/[country].tsx";
+import * as $3 from "./routes/top.tsx";
+import * as $4 from "./routes/byCountry/[country].tsx";
 import * as $$0 from "./islands/StationSearch.tsx";
-import * as $$1 from "./islands/StatioMain.tsx";
+import * as $$1 from "./islands/TopStations.tsx";
+import * as $$2 from "./islands/StatioMain.tsx";
 
 const manifest = {
   routes: {
     "./routes/map.tsx": $0,
     "./routes/search.tsx": $1,
     "./routes/index.tsx": $2,
-    "./routes/byCountry/[country].tsx": $3,
+    "./routes/top.tsx": $3,
+    "./routes/byCountry/[country].tsx": $4,
   },
   islands: {
     "./islands/StationSearch.tsx": $$0,
-    "./islands/StatioMain.tsx": $$1,
+    "./islands/TopStations.tsx": $$1,
+    "./islands/StatioMain.tsx": $$2,
   },
   baseUrl: import.meta.url,
 };
