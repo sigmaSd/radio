@@ -154,10 +154,10 @@ export function Stations(
           />
         ))}
       </div>
-      {(pager + pageNumItems < stations.length) &&
-        <button style={button74} onClick={nextPage}>next</button>}
       {pager > 0 &&
         <button style={button74} onClick={backPage}>back</button>}
+      {(pager + pageNumItems < stations.length) &&
+        <button style={button74} onClick={nextPage}>next</button>}
     </div>
   );
 }
