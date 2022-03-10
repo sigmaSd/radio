@@ -63,7 +63,7 @@ const Station = ({ station }: { station: StationType }) => {
     backgroundSize: "150px",
     border: "1px solid #ccc",
     borderRadius: "5px",
-    margin: "5px",
+    margin: "2px",
     backgroundColor: "#ccc",
     fontWeight: "bolder",
     fontSize: "1em",
