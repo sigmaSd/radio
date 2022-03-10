@@ -28,8 +28,15 @@ export async function getStations(cn: string | undefined) {
   return stations;
 }
 
-const Station = ({ station }: { station: StationType }) => {
+const Station = (
+  { station, activeStaion, setActiveStation }: {
+    station: StationType;
+    activeStaion: StationType | undefined;
+    setActiveStation: (station: StationType) => void;
+  },
+) => {
   const playStation = (station: StationType) => {
+    setActiveStation(station);
     const audioDiv = document.getElementById("audioDiv") as HTMLDivElement;
     audioDiv.style.display = "flex";
     const audioImg = document.getElementById("audioImg") as HTMLImageElement;
@@ -61,7 +68,8 @@ const Station = ({ station }: { station: StationType }) => {
     width: "150px",
     height: "150px",
     backgroundSize: "150px",
-    border: "1px solid #ccc",
+    border: "4px solid",
+    borderColor: activeStaion === station ? "#fa4" : "#abb",
     borderRadius: "5px",
     margin: "2px",
     backgroundColor: "#ccc",
@@ -130,11 +138,21 @@ export function Stations(
     "fontWeight": "light",
   };
 
+  const [activeStaion, setActiveStation] = useState<StationType | undefined>(
+    undefined,
+  );
+
   return (
     <div>
       <h2 style={h2Style}>{title}</h2>
       <div style={divStyle}>
-        {displayStations.map((station) => <Station station={station} />)}
+        {displayStations.map((station) => (
+          <Station
+            station={station}
+            activeStaion={activeStaion}
+            setActiveStation={setActiveStation}
+          />
+        ))}
       </div>
       {(pager + pageNumItems < stations.length) &&
         <button style={button74} onClick={nextPage}>next</button>}

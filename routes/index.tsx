@@ -4,7 +4,7 @@ import NavigationBar from "../components/NavigationBar.tsx";
 import StationMain from "../islands/StatioMain.tsx";
 
 export const AudioPlay = () => {
-  const styles = {
+  const imgStyle = {
     width: "150px",
     height: "150px",
     padding: "5px",
@@ -20,7 +20,7 @@ export const AudioPlay = () => {
   };
   return (
     <div id="audioDiv" style={divStyle}>
-      <img id="audioImg" style={styles} />
+      <img id="audioImg" style={imgStyle} />
       <audio id="audio" controls />
     </div>
   );
