@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h, useState } from "../client_deps.ts";
-import { HEADERS, Stations, StationType } from "./StatioMain.tsx";
+import { HEADERS, sortByVotes, Stations, StationType } from "./StatioMain.tsx";
 
 export default function SearchStations() {
   const [input, setInput] = useState("");
@@ -32,14 +32,14 @@ export default function SearchStations() {
         throw "ureachable";
     }
     setStations(
-      await (
+      (await (
         await fetch(
           `https://de1.api.radio-browser.info/json/stations/${urlMethod}/${input}`,
           {
             "headers": HEADERS,
           },
         )
-      ).json(),
+      ).json()).sort(sortByVotes),
     );
   }
   const button54 = {

@@ -5,6 +5,7 @@ export interface StationType {
   name: string;
   url: string;
   favicon: string;
+  votes: number;
 }
 export const button74 = {
   backgroundColor: "#fbeee0",
@@ -28,6 +29,9 @@ export const button74 = {
 export const HEADERS = {
   "User-Agent": "https://github.com/sigmaSd/freshRadio",
 };
+
+export const sortByVotes = (a: { votes: number }, b: { votes: number }) =>
+  a.votes >= b.votes ? -1 : 1;
 
 export async function getStations(cn: string | undefined) {
   if (cn === undefined) {
@@ -140,7 +144,6 @@ export function Stations(
   const [activeStaion, setActiveStation] = useState<StationType | undefined>(
     undefined,
   );
-
   return (
     <div>
       <h2 style={h2Style}>{title}</h2>
@@ -170,7 +173,7 @@ export default function StationMain(
   const [stations, setStations] = useState<StationType[]>([]);
   useEffect(() => {
     getStations(country).then((stations) => {
-      setStations(stations);
+      setStations(stations.sort(sortByVotes));
     });
   }, []);
   return (
