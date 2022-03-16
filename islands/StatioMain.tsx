@@ -103,6 +103,12 @@ const Station = (
   return (
     <div>
       <button
+        onMouseEnter={(e) => {
+          (e.target! as HTMLButtonElement).style.cursor = "pointer";
+        }}
+        onMouseLeave={(e) => {
+          (e.target! as HTMLButtonElement).style.cursor = "default";
+        }}
         style={styles}
         onClick={() => playStation(station)}
       >
