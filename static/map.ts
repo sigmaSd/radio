@@ -1,53 +1,59 @@
 /// <reference lib="dom" />
-
 import "https://esm.sh/leaflet";
 import L from "https://esm.sh/leaflet";
 
-const map = L.map("map");
-// deno-lint-ignore no-explicit-any
-let activeMark: L.Marker<any> | undefined = undefined;
-let activeCountry: string | undefined = undefined;
-
-const btn = document.getElementById("goBtn")!;
-btn.onclick = () => {
-  window.location.href = `/byCountry/${activeCountry}`;
-};
 drawMap();
 
-async function getLatLon(cn: string): Promise<[number, number]> {
+async function drawMap() {
+  let activeCountry = Intl.DateTimeFormat()
+    .resolvedOptions()
+    .timeZone.split("/")[1];
+
+  const btn = document.getElementById("goBtn")!;
+  btn.onclick = () => {
+    window.location.href = `/byCountry/${activeCountry}`;
+  };
+  const latlng = await getLatLng(activeCountry);
+  const map = L.map("map");
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  let activeMark = L.marker(latlng).addTo(map)
+    .bindPopup(`Selected '${activeCountry}'`)
+    .openPopup();
+
+  map.setView(latlng, 4);
+  map.on(
+    "click",
+    async (ev) => {
+      activeMark.remove();
+      [activeMark, activeCountry] = await onMapClick(ev as L.LeafletMouseEvent);
+    },
+  );
+}
+
+async function onMapClick(
+  ev: L.LeafletMouseEvent,
+): Promise<[L.Marker, string]> {
+  const map: L.Map = ev.target;
+  const activeCountry = await countryFromLatLng(ev.latlng);
+  const latlon = await getLatLng(activeCountry);
+  const activeMark = L.marker(latlon).addTo(map)
+    .bindPopup(`Selected '${activeCountry}'`)
+    .openPopup();
+  return [activeMark, activeCountry];
+}
+
+async function getLatLng(cn: string): Promise<[number, number]> {
   const resp = await fetch(
     `https://nominatim.openstreetmap.org/search.php?country=${cn}&format=json`,
   ).then((r) => r.json());
   const lat = resp[0].lat;
   const lon = resp[0].lon;
   return [parseFloat(lat), parseFloat(lon)];
-}
-
-async function drawMap() {
-  const cn = Intl.DateTimeFormat()
-    .resolvedOptions()
-    .timeZone.split("/")[1];
-  activeCountry = cn;
-  const latlon = await getLatLon(cn);
-  map.setView(latlon, 4);
-  map.on("click", onMapClick);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
-  activeMark = L.marker(latlon).addTo(map)
-    .bindPopup(`Selected '${cn}'`)
-    .openPopup();
-}
-
-async function onMapClick(e: { latlng: { lat: number; lng: number } }) {
-  const cn = await countryFromLatLng(e.latlng);
-  activeCountry = cn;
-  const latlon = await getLatLon(cn);
-  activeMark!.remove();
-  activeMark = L.marker(latlon).addTo(map)
-    .bindPopup(`Selected '${cn}'`)
-    .openPopup();
 }
 
 async function countryFromLatLng(
