@@ -51,10 +51,11 @@ export async function getStations(cn: string | undefined) {
 }
 
 const Station = (
-  { station, activeStaion, setActiveStation }: {
+  { station, activeStaion, setActiveStation, updateFavStations }: {
     station: StationType;
     activeStaion: StationType | undefined;
     setActiveStation: (station: StationType) => void;
+    updateFavStations?: () => void;
   },
 ) => {
   const playStation = (station: StationType) => {
@@ -100,6 +101,42 @@ const Station = (
     color: "#422800",
   };
 
+  const [trigger, setForceRender] = useState(false);
+
+  const toggleFavStation = (station: StationType) => {
+    const currentFavStations: StationType[] = JSON.parse(
+      localStorage.getItem("favStations") ||
+        JSON.stringify([]),
+    );
+
+    currentFavStations.find((s) => s.url === station.url)
+      ? localStorage.setItem(
+        "favStations",
+        JSON.stringify(currentFavStations.filter((s) => s.url !== station.url)),
+      )
+      : localStorage.setItem(
+        "favStations",
+        JSON.stringify([...currentFavStations, station]),
+      );
+    if (updateFavStations) {
+      updateFavStations();
+    }
+    setForceRender(!trigger);
+  };
+  const starStyle = () => {
+    const currentFavStations: StationType[] = JSON.parse(
+      localStorage.getItem("favStations") ||
+        JSON.stringify([]),
+    );
+
+    return {
+      color: currentFavStations.find((s) => s.url === station.url)
+        ? "yellow"
+        : "grey",
+      visibility: "visible",
+    };
+  };
+
   return (
     <div>
       <button
@@ -114,12 +151,35 @@ const Station = (
       >
         {station.favicon !== "" ? "" : station.name}
       </button>
-      <p style={{ fontWeight: "bold" }}>{stationName(station.name)}</p>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <p style={{ fontWeight: "bold" }}>{stationName(station.name)}</p>
+        <button
+          onMouseEnter={(e) => {
+            (e.target! as HTMLButtonElement).style.cursor = "pointer";
+          }}
+          onMouseLeave={(e) => {
+            (e.target! as HTMLButtonElement).style.cursor = "default";
+          }}
+          style={{ visibility: "hidden" }}
+          onClick={() => toggleFavStation(station)}
+        >
+          <i
+            style={starStyle()}
+            class="material-icons"
+          >
+            star
+          </i>
+        </button>
+      </div>
     </div>
   );
 };
 export function Stations(
-  { title, stations }: { title: string; stations: StationType[] },
+  { title, stations, updateFavStations }: {
+    title: string;
+    stations: StationType[];
+    updateFavStations?: () => void;
+  },
 ) {
   const pageNumItems = 20;
   const [pager, setPager] = useState(0);
@@ -152,6 +212,10 @@ export function Stations(
   );
   return (
     <div>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      />
       <h2 style={h2Style}>{title}</h2>
       <div style={divStyle}>
         {displayStations.map((station) => (
@@ -159,6 +223,7 @@ export function Stations(
             station={station}
             activeStaion={activeStaion}
             setActiveStation={setActiveStation}
+            updateFavStations={updateFavStations}
           />
         ))}
       </div>
