@@ -16,13 +16,22 @@ export default function FavStations() {
 
   return (
     <div>
-      {stations.length !== 0 &&
-        (
+      {stations.length !== 0
+        ? (
           <Stations
             title="Favourite Stations"
             stations={stations}
             updateFavStations={updateFavStations}
           />
+        )
+        : (
+          <div>
+            <h1>No Favourite Stations</h1>
+            <p>
+              You can add favourite stations by clicking on the star icon on any
+              station.
+            </p>
+          </div>
         )}
     </div>
   );
