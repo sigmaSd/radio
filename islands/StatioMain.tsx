@@ -163,12 +163,19 @@ const Station = (
           style={{ visibility: "hidden" }}
           onClick={() => toggleFavStation(station)}
         >
-          <i
-            style={starStyle()}
-            class="material-icons"
-          >
-            star
-          </i>
+          {(starStyle().color === "yellow")
+            ? (
+              <img
+                src="/star-filled.svg"
+                style={{ visibility: "visible", width: "30px" }}
+              />
+            )
+            : (
+              <img
+                src="/star-unfilled.svg"
+                style={{ visibility: "visible", width: "30px" }}
+              />
+            )}
         </button>
       </div>
     </div>
@@ -212,10 +219,6 @@ export function Stations(
   );
   return (
     <div>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      />
       <h2 style={h2Style}>{title}</h2>
       <div style={divStyle}>
         {displayStations.map((station) => (
