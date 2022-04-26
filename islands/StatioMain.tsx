@@ -167,13 +167,13 @@ const Station = (
             ? (
               <img
                 src="/star-filled.svg"
-                style={{ visibility: "visible", width: "30px" }}
+                style={{ visibility: "visible", width: "20px" }}
               />
             )
             : (
               <img
                 src="/star-unfilled.svg"
-                style={{ visibility: "visible", width: "30px" }}
+                style={{ visibility: "visible", width: "20px" }}
               />
             )}
         </button>
