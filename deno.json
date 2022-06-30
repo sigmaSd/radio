@@ -1,7 +1,8 @@
 {
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts",
-    "compile-map": "deno run -A compileMap.ts"
+    "compile-map": "deno run -A compileMap.ts",
+    "check": "deno fmt && deno lint && fd -e ts -x deno check"
   },
   "importMap": "./import_map.json"
 }

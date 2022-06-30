@@ -1,4 +1,6 @@
+/// <reference no-default-lib="true" />
 /// <reference lib="dom" />
+/// <reference lib="es2015" />
 import "https://esm.sh/leaflet";
 import L from "https://esm.sh/leaflet";
 
