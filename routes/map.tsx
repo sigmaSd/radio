@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h, Head } from "../client_deps.ts";
+import { h } from "preact";
+import { Head } from "$fresh/runtime.ts";
 import NavigationBar from "../components/NavigationBar.tsx";
 
 export default function Map() {

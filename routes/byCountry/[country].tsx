@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h, PageProps } from "../../client_deps.ts";
+import { PageProps } from "$fresh/src/server/types.ts";
+import { h } from "preact";
 import NavigationBar from "../../components/NavigationBar.tsx";
 import StationMain from "../../islands/StatioMain.tsx";
 import { AudioPlay } from "../index.tsx";

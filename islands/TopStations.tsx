@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h, useEffect, useState } from "../client_deps.ts";
+import { h } from "preact";
+import { useEffect, useState } from "preact/hooks";
 import { button74, HEADERS, Stations, StationType } from "./StatioMain.tsx";
 
 export default function TopStations() {

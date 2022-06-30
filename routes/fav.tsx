@@ -1,10 +1,10 @@
 /** @jsx h */
-import { h, PageProps } from "../client_deps.ts";
+import { h } from "preact";
 import NavigationBar from "../components/NavigationBar.tsx";
 import FavStations from "../islands/FavStations.tsx";
 import { AudioPlay } from "./index.tsx";
 
-export default function Page(props: PageProps) {
+export default function Page() {
   const mainStyle = {
     textAlign: "center",
     padding: "1em",

@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h, useState } from "../client_deps.ts";
+import { h } from "preact";
+import { useState } from "preact/hooks";
 import { HEADERS, sortByVotes, Stations, StationType } from "./StatioMain.tsx";
 
 export default function SearchStations() {

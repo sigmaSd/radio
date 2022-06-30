@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h } from "../client_deps.ts";
+import { h } from "preact";
 import NavigationBar from "../components/NavigationBar.tsx";
 import SearchStations from "../islands/StationSearch.tsx";
 import { AudioPlay } from "./index.tsx";

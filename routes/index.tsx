@@ -1,5 +1,6 @@
 /** @jsx h */
-import { h, Head } from "../client_deps.ts";
+import { Head } from "$fresh/runtime.ts";
+import { h } from "preact";
 import NavigationBar from "../components/NavigationBar.tsx";
 import StationMain from "../islands/StatioMain.tsx";
 
