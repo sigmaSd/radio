@@ -2,7 +2,8 @@
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "compile-map": "deno run -A compileMap.ts",
-    "check": "deno fmt && deno lint && fd -e ts -x deno check"
+    "create-radio-db": "deno run -A --unstable createRadioDb.ts",
+    "check": "deno fmt && deno lint && fd -e ts -x deno check --unstable"
   },
   "importMap": "./import_map.json"
 }
