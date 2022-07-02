@@ -32,17 +32,17 @@ const createRadioDb = async () => {
         db: StationDBType[],
       ) => {
         const sanitize = (str: string) =>
-          str.replaceAll("\n", " ").replaceAll(",", " ");
+          str.trim().replaceAll("\n", " ").replaceAll(",", " ");
         return db.filter((s) => s.name.trim() && s.url.trim())
           .map(
             (station) => {
               return (
-                sanitize(station.name.trim()) + "," +
-                sanitize(station.country.trim()) + "," +
-                sanitize(station.language.trim()) + "," +
+                sanitize(station.name) + "," +
+                sanitize(station.country) + "," +
+                sanitize(station.language) + "," +
                 station.votes + "," +
-                sanitize(station.url.trim()) + "," +
-                sanitize(station.favicon.trim())
+                sanitize(station.url) + "," +
+                sanitize(station.favicon)
               );
             },
           ).join("\n");
