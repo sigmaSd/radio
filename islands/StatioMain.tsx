@@ -1,4 +1,5 @@
 /** @jsx h */
+import { Handlers } from "https://deno.land/x/fresh@1.0.0/server.ts";
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 
@@ -27,6 +28,21 @@ export const button74 = {
   touchAction: "manipulation",
 };
 
+export const HEADERS = {
+  "User-Agent": "https://github.com/sigmaSd/freshRadio",
+};
+
+export let isDeployed: boolean;
+try {
+  isDeployed = !!Deno.env.get("DENO_DEPLOYMENT_ID");
+} catch {
+  isDeployed = true;
+}
+
+export const apiUrl = isDeployed
+  ? "https://de1.api.radio-browser.info/json/stations"
+  : "/api/db";
+
 export const sortByVotes = (a: { votes: number }, b: { votes: number }) =>
   a.votes >= b.votes ? -1 : 1;
 
@@ -38,7 +54,10 @@ export async function getStations(cn: string | undefined) {
   }
   const stations: StationType[] = await (
     await fetch(
-      `/api/db/bycountry/${cn}`,
+      `${apiUrl}/bycountry/${cn}`,
+      {
+        headers: HEADERS,
+      },
     )
   ).json();
   return stations;

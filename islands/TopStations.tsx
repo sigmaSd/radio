@@ -1,7 +1,13 @@
 /** @jsx h */
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { button74, Stations, StationType } from "./StatioMain.tsx";
+import {
+  apiUrl,
+  button74,
+  HEADERS,
+  Stations,
+  StationType,
+} from "./StatioMain.tsx";
 
 export default function TopStations() {
   const [stations, setStations] = useState<StationType[]>([]);
@@ -10,7 +16,10 @@ export default function TopStations() {
 
   useEffect(() => {
     fetch(
-      `/api/db/topclick?limit=${pageNumItems}&offset=${offset}`,
+      `${apiUrl}/topclick?limit=${pageNumItems}&offset=${offset}`,
+      {
+        headers: HEADERS,
+      },
     ).then((res) => res.json()).then((data) => {
       setStations(data);
     });

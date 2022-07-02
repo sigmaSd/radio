@@ -1,7 +1,13 @@
 /** @jsx h */
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { sortByVotes, Stations, StationType } from "./StatioMain.tsx";
+import {
+  apiUrl,
+  HEADERS,
+  sortByVotes,
+  Stations,
+  StationType,
+} from "./StatioMain.tsx";
 
 export default function SearchStations() {
   const [input, setInput] = useState("");
@@ -41,7 +47,10 @@ export default function SearchStations() {
     setStations(
       (await (
         await fetch(
-          `/api/db/${urlMethod}/${input}`,
+          `${apiUrl}/${urlMethod}/${input}`,
+          {
+            headers: HEADERS,
+          },
         )
       ).json()).sort(sortByVotes),
     );
