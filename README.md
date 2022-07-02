@@ -1,11 +1,7 @@
-# fresh project
+# Radio
 
-### Usage
+https://fresh-radio.deno.dev/
 
-Start the project:
+## Credits
 
-```
-deno task start
-```
-
-This will watch the project directory and restart as necessary.
+- uses the awesome radio db https://de1.api.radio-browser.info/

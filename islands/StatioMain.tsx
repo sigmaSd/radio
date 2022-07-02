@@ -27,10 +27,6 @@ export const button74 = {
   touchAction: "manipulation",
 };
 
-export const HEADERS = {
-  "User-Agent": "https://github.com/sigmaSd/freshRadio",
-};
-
 export const sortByVotes = (a: { votes: number }, b: { votes: number }) =>
   a.votes >= b.votes ? -1 : 1;
 
@@ -42,10 +38,7 @@ export async function getStations(cn: string | undefined) {
   }
   const stations: StationType[] = await (
     await fetch(
-      `https://de1.api.radio-browser.info/json/stations/bycountry/${cn}`,
-      {
-        "headers": HEADERS,
-      },
+      `/api/db/bycountry/${cn}`,
     )
   ).json();
   return stations;

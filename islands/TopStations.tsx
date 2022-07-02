@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { button74, HEADERS, Stations, StationType } from "./StatioMain.tsx";
+import { button74, Stations, StationType } from "./StatioMain.tsx";
 
 export default function TopStations() {
   const [stations, setStations] = useState<StationType[]>([]);
@@ -10,10 +10,7 @@ export default function TopStations() {
 
   useEffect(() => {
     fetch(
-      `https://de1.api.radio-browser.info/json/stations/topclick?limit=${pageNumItems}&offset=${offset}`,
-      {
-        "headers": HEADERS,
-      },
+      `/api/db/topclick?limit=${pageNumItems}&offset=${offset}`,
     ).then((res) => res.json()).then((data) => {
       setStations(data);
     });

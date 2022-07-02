@@ -1,4 +1,5 @@
 import {} from "https://deno.land/x/simple_shell@0.9.0/src/stringUtils.ts";
+import { StationDBType } from "../routes/api/db/db.ts";
 
 const createRadioDb = async () => {
   // create the db folder
@@ -25,32 +26,51 @@ const createRadioDb = async () => {
       jsonDbPath: "./static/db/db.json",
       sqliteDbPath: "./static/db/db.sqlite",
       tableName: "radio_table",
-      jsonToCsvFn: (db: { name: string; country: string; url: string }[]) => {
-        const sanitize = (str: string) => str.replaceAll("\n", " ");
-        return "Name,Country,Url\n" +
-          db.filter((s) => s.name.trim() && s.country.trim() && s.url.trim())
-            .map(
-              (station) => {
-                return `${
-                  sanitize(station.name.trim())
-                },${station.country.trim()},${station.url.trim()}`;
-              },
-            ).join("\n");
+      sqliteTableConstructor:
+        "CREATE TABLE radio_table(name TEXT, country TEXT, language TEXT, votes INT, url TEXT, favicon TEXT)",
+      jsonToCsvFn: (
+        db: StationDBType[],
+      ) => {
+        const sanitize = (str: string) =>
+          str.replaceAll("\n", " ").replaceAll(",", " ");
+        return db.filter((s) => s.name.trim() && s.url.trim())
+          .map(
+            (station) => {
+              return (
+                sanitize(station.name.trim()) + "," +
+                sanitize(station.country.trim()) + "," +
+                sanitize(station.language.trim()) + "," +
+                station.votes + "," +
+                sanitize(station.url.trim()) + "," +
+                sanitize(station.favicon.trim())
+              );
+            },
+          ).join("\n");
       },
     },
   );
 };
 
+/**
+ * @description
+ * convert a json db to csv and then to sqlite
+ *
+ * @note
+ * `sqliteTableConstructor` is a string that is used to create the table, if it is specified the csv file *should not* contain a header row.
+ * if it's not specified then the csv file *must* contain a header row so it can be used to infer the column names.
+ */
 const jsonToSqlite = async (
   {
     jsonDbPath,
     jsonToCsvFn,
     sqliteDbPath,
+    sqliteTableConstructor,
     tableName,
   }: {
     jsonDbPath: string;
     sqliteDbPath: string;
     tableName: string;
+    sqliteTableConstructor?: string;
     // deno-lint-ignore no-explicit-any
     jsonToCsvFn: (jsonDb: any) => string;
   },
@@ -76,8 +96,10 @@ const jsonToSqlite = async (
     });
     await sqlite3.stdin.getWriter().write(
       new TextEncoder().encode(
-        `.mode csv\n.import ${csvDbPath} ${tableName}\n.quit\n
-        `,
+        ".mode csv\n" +
+          (sqliteTableConstructor ? `${sqliteTableConstructor};\n` : "") +
+          `.import ${csvDbPath} ${tableName}\n` +
+          ".exit\n",
       ),
     );
     await sqlite3.status;

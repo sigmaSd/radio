@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
-import { useState } from "preact/hooks";
-import { HEADERS, sortByVotes, Stations, StationType } from "./StatioMain.tsx";
+import { useEffect, useState } from "preact/hooks";
+import { sortByVotes, Stations, StationType } from "./StatioMain.tsx";
 
 export default function SearchStations() {
   const [input, setInput] = useState("");
@@ -17,8 +17,14 @@ export default function SearchStations() {
     setMethod(e.target.value);
   };
 
+  // reset selected method to country
+  useEffect(() => {
+    setMethod("Country");
+  }, []);
+
   async function search() {
     let urlMethod: string;
+
     switch (method) {
       case "Country":
         urlMethod = "bycountry";
@@ -35,10 +41,7 @@ export default function SearchStations() {
     setStations(
       (await (
         await fetch(
-          `https://de1.api.radio-browser.info/json/stations/${urlMethod}/${input}`,
-          {
-            "headers": HEADERS,
-          },
+          `/api/db/${urlMethod}/${input}`,
         )
       ).json()).sort(sortByVotes),
     );
@@ -65,7 +68,7 @@ export default function SearchStations() {
     <div>
       <h2>Search Stations</h2>
       <input style={button54} onChange={handleChange} value={input} />
-      <select style={button54} onChange={handleMethod}>
+      <select style={button54} onChange={handleMethod} value={method}>
         <option>Country</option>
         <option>Language</option>
         <option>Name</option>
