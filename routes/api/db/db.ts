@@ -20,9 +20,7 @@ const jsonDb: StationDBType[] = JSON.parse(
 for (const station of jsonDb) {
   try {
     db.query(
-      `insert into radio_table values ('${
-        station.name.replaceAll('""', "")
-      }', '${station.country}', '${station.language}', ${station.votes}, '${station.url}', '${station.favicon}')`,
+      `insert into radio_table values ('${station.name}', '${station.country}', '${station.language}', ${station.votes}, '${station.url}', '${station.favicon}')`,
     );
   } catch {
     // some rows are broken, ignore
