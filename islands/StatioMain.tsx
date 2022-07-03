@@ -1,5 +1,4 @@
 /** @jsx h */
-import { Handlers } from "https://deno.land/x/fresh@1.0.0/server.ts";
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 
@@ -32,14 +31,16 @@ export const HEADERS = {
   "User-Agent": "https://github.com/sigmaSd/freshRadio",
 };
 
-export let isDeployed: boolean;
+let useRemoteDb: boolean;
 try {
-  isDeployed = !!Deno.env.get("DENO_DEPLOYMENT_ID");
+  useRemoteDb = !!Deno.env.get("DENO_DEPLOYMENT_ID");
 } catch {
-  isDeployed = true;
+  useRemoteDb = true;
 }
+// hardcode to false
+useRemoteDb = false;
 
-export const apiUrl = isDeployed
+export const apiUrl = useRemoteDb
   ? "https://de1.api.radio-browser.info/json/stations"
   : "/api/db";
 

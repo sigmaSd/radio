@@ -20,6 +20,29 @@ const createRadioDb = async () => {
     await (await fetch("https://de1.api.radio-browser.info/json/stations")).body
       ?.pipeTo((await Deno.create("./static/db/db.json")).writable);
   }
+
+  // create a new db containing only the needed columns
+  await Deno.writeTextFile(
+    "./static/db/compressed_db.json",
+    JSON.stringify(
+      (await Deno.readTextFile("./static/db/db.json").then(JSON.parse)).map(
+        (s: StationDBType) => {
+          return {
+            name: s.name,
+            country: s.country,
+            language: s.language,
+            votes: s.votes,
+            url: s.url,
+            favicon: s.favicon,
+          };
+        },
+      ),
+    ),
+  );
+
+  // the next section is not needed anymore since we create an in memory db from the json db directly
+
+  /*
   // convert it to sqlite
   await jsonToSqlite(
     {
@@ -49,6 +72,7 @@ const createRadioDb = async () => {
       },
     },
   );
+  */
 };
 
 /**
@@ -59,7 +83,7 @@ const createRadioDb = async () => {
  * `sqliteTableConstructor` is a string that is used to create the table, if it is specified the csv file *should not* contain a header row.
  * if it's not specified then the csv file *must* contain a header row so it can be used to infer the column names.
  */
-const jsonToSqlite = async (
+export const jsonToSqlite = async (
   {
     jsonDbPath,
     jsonToCsvFn,
