@@ -62,6 +62,7 @@ async function countryFromLatLng(
   { lat, lng }: { lat: number; lng: number },
 ): Promise<string> {
   const url =
-    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
+    // make sure we get english country names because that's what the database expects.
+    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=en`;
   return await fetch(url).then((r) => r.json()).then((r) => r.address.country);
 }
