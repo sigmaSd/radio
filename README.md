@@ -1,6 +1,5 @@
 # Radio
-
-https://rodio.deno.dev/
+<img src="./static/favicon.ico/"> https://rodio.deno.dev/
 
 ## Credits
 
