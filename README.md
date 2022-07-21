@@ -1,6 +1,6 @@
 # Radio
 
-https://fresh-radio.deno.dev/
+https://rodio.deno.dev/
 
 ## Credits
 
