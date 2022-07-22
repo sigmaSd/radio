@@ -1,9 +1,8 @@
 import { Handlers } from "$fresh/server.ts";
-import { StationType } from "../../../islands/StatioMain.tsx";
-import { db } from "./db.ts";
+import { queryEntriesAndHandleTypes } from "./db.ts";
 
 export const handler: Handlers = {
-  GET(req) {
+  async GET(req) {
     const rawSearch = new URL(req.url).search;
     const params: { [key: string]: string } = {};
     rawSearch.substring(1).split("&").forEach((pair) => {
@@ -19,7 +18,7 @@ export const handler: Handlers = {
       query += ` OFFSET ${params.offset}`;
     }
 
-    const stations = db.queryEntries(query) as unknown as StationType[];
+    const stations = await queryEntriesAndHandleTypes(query);
 
     return new Response(JSON.stringify(stations));
   },
