@@ -6,7 +6,7 @@ import StationMain from "../../islands/StatioMain.tsx";
 import { AudioPlay } from "../index.tsx";
 
 export default function Page(props: PageProps) {
-  const { country } = props.params;
+  const country = decodeURIComponent(props.params.country); // handle things like "United%20Kingdom"
   const mainStyle = {
     textAlign: "center",
     padding: "1em",
