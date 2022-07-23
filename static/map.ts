@@ -32,16 +32,24 @@ async function drawMap() {
     "click",
     async (ev) => {
       activeMark.remove();
-      [activeMark, activeCountry] = await onMapClick(ev as L.LeafletMouseEvent);
+      const result = await onMapClick(ev as L.LeafletMouseEvent);
+      if (result) {
+        activeMark = result[0];
+        activeCountry = result[1];
+      }
     },
   );
 }
 
 async function onMapClick(
   ev: L.LeafletMouseEvent,
-): Promise<[L.Marker, string]> {
+): Promise<[L.Marker, string] | undefined> {
   const map: L.Map = ev.target;
+
   const activeCountry = await countryFromLatLng(ev.latlng);
+  if (!activeCountry) {
+    return;
+  }
   const latlon = await getLatLng(activeCountry);
   const activeMark = L.marker(latlon).addTo(map)
     .bindPopup(`Selected '${activeCountry}'`)
@@ -64,5 +72,7 @@ async function countryFromLatLng(
   const url =
     // make sure we get english country names because that's what the database expects.
     `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&accept-language=en`;
-  return await fetch(url).then((r) => r.json()).then((r) => r.address.country);
+  return await fetch(url).then((r) => r.json()).then((r) =>
+    r.address?.country || ""
+  );
 }
