@@ -72,7 +72,18 @@ const Station = (
     updateFavStations?: () => void;
   },
 ) => {
-  const playStation = (station: StationType) => {
+  const playStation = async (station: StationType) => {
+    const getSrc = async (station: string) => {
+      const url = new URL(station);
+      if ((url.pathname).endsWith(".m3u") || url.pathname.endsWith(".pls")) {
+        return await fetch("/api/handlesrc", {
+          method: "POST",
+          body: station,
+        }).then((res) => res.text());
+      }
+      return station;
+    };
+
     setActiveStation(station);
     const audioDiv = document.getElementById("audioDiv") as HTMLDivElement;
     audioDiv.style.display = "flex";
@@ -88,7 +99,7 @@ const Station = (
     }
     const audio = document.getElementById("audio") as HTMLAudioElement;
     audio.setAttribute("controls", "");
-    audio.src = station.url;
+    audio.src = await getSrc(station.url);
     audio.play();
   };
 
