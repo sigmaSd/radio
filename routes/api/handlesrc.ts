@@ -31,6 +31,20 @@ export const handler: Handlers = {
       if (m3uStations[0]) {
         station = m3uStations[0];
       }
+    } else if (url.pathname.endsWith(".asx")) {
+      const urlList = await fetch(station).then((res) => res.text());
+
+      const asxStations = urlList.split("\n").filterMap((l) => {
+        const line = l.toLowerCase().trim();
+
+        if (line.startsWith("<ref")) {
+          return line.split("href=")[1].split('"')[1];
+        }
+      });
+
+      if (asxStations[0]) {
+        station = asxStations[0];
+      }
     }
     return new Response(station);
   },

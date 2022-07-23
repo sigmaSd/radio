@@ -75,7 +75,9 @@ const Station = (
   const playStation = async (station: StationType) => {
     const getSrc = async (station: string) => {
       const url = new URL(station);
-      if ((url.pathname).endsWith(".m3u") || url.pathname.endsWith(".pls")) {
+      const isSpecialType = url.pathname.endsWith(".pls") ||
+        url.pathname.endsWith(".m3u") || url.pathname.endsWith(".asx");
+      if (isSpecialType) {
         return await fetch("/api/handlesrc", {
           method: "POST",
           body: station,
