@@ -1,4 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
+import {} from "https://deno.land/x/simple_shell@0.10.0/src/stringUtils.ts";
+import {} from "https://deno.land/x/simple_shell@0.10.0/src/arrayUtils.ts";
 
 export const handler: Handlers = {
   async POST(req) {
@@ -9,7 +11,7 @@ export const handler: Handlers = {
     if (url.pathname.endsWith(".pls")) {
       const urlList = await fetch(station).then((res) => res.text());
 
-      const plsStations = urlList.split("\n").filterMap((line) => {
+      const plsStations = urlList.lines().filterMap((line) => {
         if (line.startsWith("File")) {
           return line.split("=")[1];
         }
@@ -21,7 +23,7 @@ export const handler: Handlers = {
     } else if (url.pathname.endsWith(".m3u")) {
       const urlList = await fetch(station).then((res) => res.text());
 
-      const m3uStations = urlList.split("\n").filterMap((line) => {
+      const m3uStations = urlList.lines().filterMap((line) => {
         if (line.startsWith("#")) {
           return;
         }
@@ -34,7 +36,7 @@ export const handler: Handlers = {
     } else if (url.pathname.endsWith(".asx")) {
       const urlList = await fetch(station).then((res) => res.text());
 
-      const asxStations = urlList.split("\n").filterMap((l) => {
+      const asxStations = urlList.lines().filterMap((l) => {
         const line = l.toLowerCase().trim();
 
         if (line.startsWith("<ref")) {
@@ -48,13 +50,4 @@ export const handler: Handlers = {
     }
     return new Response(station);
   },
-};
-
-declare global {
-  interface Array<T> {
-    filterMap<E>(f: (x: T) => E | undefined): E[];
-  }
-}
-Array.prototype.filterMap = function <T, E>(f: (x: T) => E | undefined): E[] {
-  return this.map(f).filter((x) => x) as E[];
 };
