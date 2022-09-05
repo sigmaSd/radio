@@ -1,4 +1,4 @@
-export interface StationType {
+export interface StationTypez {
   name: string;
   url: string;
   favicon: string;
