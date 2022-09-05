@@ -1,13 +1,9 @@
 /** @jsx h */
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
+import { StationType } from "../interfaces/station.ts";
+import Audioplay from "../components/AudioPlay.tsx";
 
-export interface StationType {
-  name: string;
-  url: string;
-  favicon: string;
-  votes: number;
-}
 export const button74 = {
   backgroundColor: "#fbeee0",
   border: "2px solid #422800",
@@ -72,38 +68,6 @@ const Station = (
     updateFavStations?: () => void;
   },
 ) => {
-  const playStation = async (station: StationType) => {
-    const getSrc = async (station: string) => {
-      const url = new URL(station);
-      const isSpecialType = url.pathname.endsWith(".pls") ||
-        url.pathname.endsWith(".m3u") || url.pathname.endsWith(".asx");
-      if (isSpecialType) {
-        return await fetch("/api/handlesrc", {
-          method: "POST",
-          body: station,
-        }).then((res) => res.text());
-      }
-      return station;
-    };
-
-    setActiveStation(station);
-    const audioDiv = document.getElementById("audioDiv") as HTMLDivElement;
-    audioDiv.style.display = "flex";
-    const audioImg = document.getElementById("audioImg") as HTMLImageElement;
-    if (station.favicon !== "") {
-      audioImg.alt = "";
-      audioImg.src = station.favicon;
-      audioImg.style.height = "150px";
-    } else {
-      audioImg.src = "";
-      audioImg.alt = station.name;
-    }
-    const audio = document.getElementById("audio") as HTMLAudioElement;
-    audio.setAttribute("controls", "");
-    audio.src = await getSrc(station.url);
-    audio.play();
-  };
-
   const stationName = (name: string) => {
     if (name.length > 12) {
       return `${name.slice(0, 12)}..`;
@@ -173,7 +137,10 @@ const Station = (
           (e.target! as HTMLButtonElement).style.cursor = "default";
         }}
         style={styles}
-        onClick={() => playStation(station)}
+        onClick={() => {
+          setActiveStation(station);
+          Audioplay.playStation(station);
+        }}
       >
         {station.favicon !== "" ? "" : station.name}
       </button>

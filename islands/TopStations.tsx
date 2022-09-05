@@ -1,13 +1,8 @@
 /** @jsx h */
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import {
-  apiUrl,
-  button74,
-  HEADERS,
-  Stations,
-  StationType,
-} from "./StatioMain.tsx";
+import { StationType } from "../interfaces/station.ts";
+import { apiUrl, button74, HEADERS, Stations } from "./StatioMain.tsx";
 
 export default function TopStations() {
   const [stations, setStations] = useState<StationType[]>([]);

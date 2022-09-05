@@ -1,5 +1,6 @@
 /** @jsx h */
 import { h } from "preact";
+import { StationType } from "../interfaces/station.ts";
 
 export default function AudioPlay() {
   const imgStyle = {
@@ -28,3 +29,35 @@ export default function AudioPlay() {
     </div>
   );
 }
+
+AudioPlay.playStation = async (station: StationType) => {
+  const getSrc = async (station: string) => {
+    const url = new URL(station);
+    const isSpecialType = url.pathname.endsWith(".pls") ||
+      url.pathname.endsWith(".m3u") || url.pathname.endsWith(".asx");
+    if (isSpecialType) {
+      return await fetch("/api/handlesrc", {
+        method: "POST",
+        body: station,
+      }).then((res) => res.text());
+    }
+    return station;
+  };
+
+  const audioDiv = document.getElementById("audioDiv") as HTMLDivElement;
+  audioDiv.style.display = "flex";
+
+  const audioImg = document.getElementById("audioImg") as HTMLImageElement;
+  if (station.favicon !== "") {
+    audioImg.alt = "";
+    audioImg.src = station.favicon;
+  } else {
+    audioImg.src = "";
+    audioImg.alt = station.name;
+  }
+
+  const audio = document.getElementById("audio") as HTMLAudioElement;
+  audio.setAttribute("controls", "");
+  audio.src = await getSrc(station.url);
+  audio.play();
+};
