@@ -1,5 +1,5 @@
 import {} from "https://deno.land/x/simple_shell@0.9.0/src/stringUtils.ts";
-import { StationDBType } from "../routes/api/db/db.ts";
+import { StationType } from "../interfaces/station.ts";
 
 const createRadioDb = async (arg?: string) => {
   // create the db folder
@@ -35,7 +35,7 @@ const createRadioDb = async (arg?: string) => {
     "./static/db/compressed_db.json",
     JSON.stringify(
       (await Deno.readTextFile("./static/db/db.json").then(JSON.parse)).map(
-        (s: StationDBType) => {
+        (s: StationType) => {
           return {
             name: s.name,
             country: s.country,
