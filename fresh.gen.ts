@@ -6,15 +6,14 @@ import * as $0 from "./routes/_app.tsx";
 import * as $1 from "./routes/api/db/bycountry/[country].ts";
 import * as $2 from "./routes/api/db/bylanguage/[language].ts";
 import * as $3 from "./routes/api/db/byname/[name].ts";
-import * as $4 from "./routes/api/db/db.ts";
-import * as $5 from "./routes/api/db/topclick.ts";
-import * as $6 from "./routes/api/handlesrc.ts";
-import * as $7 from "./routes/byCountry/[country].tsx";
-import * as $8 from "./routes/fav.tsx";
-import * as $9 from "./routes/index.tsx";
-import * as $10 from "./routes/map.tsx";
-import * as $11 from "./routes/search.tsx";
-import * as $12 from "./routes/top.tsx";
+import * as $4 from "./routes/api/db/topclick.ts";
+import * as $5 from "./routes/api/handlesrc.ts";
+import * as $6 from "./routes/byCountry/[country].tsx";
+import * as $7 from "./routes/fav.tsx";
+import * as $8 from "./routes/index.tsx";
+import * as $9 from "./routes/map.tsx";
+import * as $10 from "./routes/search.tsx";
+import * as $11 from "./routes/top.tsx";
 import * as $$0 from "./islands/FavStations.tsx";
 import * as $$1 from "./islands/StatioMain.tsx";
 import * as $$2 from "./islands/StationSearch.tsx";
@@ -26,15 +25,14 @@ const manifest = {
     "./routes/api/db/bycountry/[country].ts": $1,
     "./routes/api/db/bylanguage/[language].ts": $2,
     "./routes/api/db/byname/[name].ts": $3,
-    "./routes/api/db/db.ts": $4,
-    "./routes/api/db/topclick.ts": $5,
-    "./routes/api/handlesrc.ts": $6,
-    "./routes/byCountry/[country].tsx": $7,
-    "./routes/fav.tsx": $8,
-    "./routes/index.tsx": $9,
-    "./routes/map.tsx": $10,
-    "./routes/search.tsx": $11,
-    "./routes/top.tsx": $12,
+    "./routes/api/db/topclick.ts": $4,
+    "./routes/api/handlesrc.ts": $5,
+    "./routes/byCountry/[country].tsx": $6,
+    "./routes/fav.tsx": $7,
+    "./routes/index.tsx": $8,
+    "./routes/map.tsx": $9,
+    "./routes/search.tsx": $10,
+    "./routes/top.tsx": $11,
   },
   islands: {
     "./islands/FavStations.tsx": $$0,

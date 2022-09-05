@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { StationType } from "../../../interfaces/station.ts";
-import { db } from "./db.ts";
+import { db } from "../../../db.ts";
 
 export const handler: Handlers = {
   GET(req) {
