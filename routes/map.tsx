@@ -1,20 +1,24 @@
 /** @jsx h */
 import { h } from "preact";
 import { Head } from "$fresh/runtime.ts";
-import NavigationBar from "../components/NavigationBar.tsx";
 
 export default function Map() {
-  const mainStyle = {
-    textAlign: "center",
-    padding: "1em",
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "column",
+  /* CSS */
+  const buttonStyle = {
+    appearance: "none",
+    backgroundColor: "#2ea44f",
+    border: "1px solid rgba(27, 31, 35, .15)",
+    borderRadius: "6px",
+    boxShadow: "rgba(27, 31, 35, .1) 0 1px 0",
+    boxSizing: "border-box",
+    color: "#fff",
+    cursor: "pointer",
+    display: "inline-block",
+    marginBottom: "5px",
+    width: "50px",
   };
-
   return (
     <div>
-      <NavigationBar />
       <Head>
         <link
           rel="stylesheet"
@@ -24,13 +28,11 @@ export default function Map() {
         />
         <link rel="stylesheet" href="/global.css" />
       </Head>
-      <div style={mainStyle}>
-        <button style={{ backgroundColor: "lightGreen" }} id="goBtn">
-          Go!
-        </button>
-        <div id="map"></div>
-        <script type="module" src="/map.js" />
-      </div>
+      <button style={buttonStyle} id="goBtn">
+        Go!
+      </button>
+      <div id="map"></div>
+      <script type="module" src="/map.js" />
     </div>
   );
 }

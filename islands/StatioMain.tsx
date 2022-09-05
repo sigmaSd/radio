@@ -97,7 +97,6 @@ const Station = (
     } else {
       audioImg.src = "";
       audioImg.alt = station.name;
-      audioImg.style.height = "40px";
     }
     const audio = document.getElementById("audio") as HTMLAudioElement;
     audio.setAttribute("controls", "");
