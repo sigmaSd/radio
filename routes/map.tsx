@@ -12,8 +12,9 @@ export default function Map() {
     color: "#fff",
     cursor: "pointer",
     display: "inline-block",
-    marginBottom: "5px",
-    width: "50px",
+    marginTop: "5px",
+    width: "150px",
+    height: "30px",
   };
   return (
     <div>
@@ -26,10 +27,10 @@ export default function Map() {
         />
         <link rel="stylesheet" href="/global.css" />
       </Head>
+      <div id="map"></div>
       <button style={buttonStyle} id="goBtn">
         Go!
       </button>
-      <div id="map"></div>
       <script type="module" src="/map.js" />
     </div>
   );
