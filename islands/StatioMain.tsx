@@ -195,8 +195,8 @@ export function Stations(
   }
 
   const divStyle = {
-    display: "flex",
-    flexWrap: "wrap",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill,minmax(160px, 1fr))",
   };
 
   const h2Style = {
