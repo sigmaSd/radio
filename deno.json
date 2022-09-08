@@ -9,7 +9,13 @@
   "importMap": "./import_map.json",
   "fmt": {
     "files": {
-      "exclude": ["static/db/db.json"]
+      "exclude": [
+        "static/db/db.json"
+      ]
     }
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }

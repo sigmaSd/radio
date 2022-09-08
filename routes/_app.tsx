@@ -1,7 +1,5 @@
-/** @jsx h */
 import { Head } from "$fresh/runtime.ts";
 import { AppProps } from "$fresh/server.ts";
-import { h } from "preact";
 import NavigationBar from "../components/NavigationBar.tsx";
 
 export default function App({ Component }: AppProps) {

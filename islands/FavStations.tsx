@@ -1,5 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { StationType } from "../interfaces/station.ts";
 import { Stations } from "./StatioMain.tsx";

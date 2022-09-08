@@ -1,6 +1,4 @@
-/** @jsx h */
 import { PageProps } from "$fresh/src/server/types.ts";
-import { h } from "preact";
 import AudioPlay from "../../components/AudioPlay.tsx";
 import StationMain from "../../islands/StatioMain.tsx";
 
