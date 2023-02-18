@@ -1,4 +1,5 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 import { StationType } from "@/interfaces/station.ts";
 import {
   apiUrl,
@@ -8,28 +9,19 @@ import {
 } from "@/islands/StatioMain.tsx";
 
 export default function SearchStations() {
-  const [input, setInput] = useState("");
-  const [method, setMethod] = useState("Country");
-  const [stations, setStations] = useState<StationType[]>([]);
-
-  // deno-lint-ignore no-explicit-any
-  const handleChange = (e: any) => {
-    setInput(e.target.value);
-  };
-  // deno-lint-ignore no-explicit-any
-  const handleMethod = (e: any) => {
-    setMethod(e.target.value);
-  };
+  const input = useSignal("");
+  const method = useSignal("Country");
+  const stations = useSignal<StationType[]>([]);
 
   // reset selected method to country
   useEffect(() => {
-    setMethod("Country");
+    method.value = "Country";
   }, []);
 
   async function search() {
     let urlMethod: string;
 
-    switch (method) {
+    switch (method.value) {
       case "Country":
         urlMethod = "bycountry";
         break;
@@ -42,17 +34,16 @@ export default function SearchStations() {
       default:
         throw "ureachable";
     }
-    setStations(
-      (await (
-        await fetch(
-          `${apiUrl}/${urlMethod}/${input}`,
-          {
-            headers: HEADERS,
-          },
-        )
-      ).json()).sort(sortByVotes),
-    );
+    stations.value = (await (
+      await fetch(
+        `${apiUrl}/${urlMethod}/${input}`,
+        {
+          headers: HEADERS,
+        },
+      )
+    ).json()).sort(sortByVotes);
   }
+
   const button54 = {
     fontFamily: '"Open Sans", sans-serif',
     fontSize: "16px",
@@ -74,15 +65,29 @@ export default function SearchStations() {
   return (
     <div>
       <h2>Search Stations</h2>
-      <input style={button54} onChange={handleChange} value={input} />
-      <select style={button54} onChange={handleMethod} value={method}>
+      <input
+        style={button54}
+        value={input.value}
+        // deno-lint-ignore no-explicit-any
+        onChange={(e: any) => {
+          input.value = e.target.value;
+        }}
+      />
+      <select
+        style={button54}
+        value={method.value}
+        // deno-lint-ignore no-explicit-any
+        onChange={(e: any) => {
+          method.value = e.target.value;
+        }}
+      >
         <option>Country</option>
         <option>Language</option>
         <option>Name</option>
       </select>
       <button style={button54} onClick={search}>Search</button>
-      {stations.length !== 0 && (
-        <Stations title="Search Results" stations={stations} />
+      {stations.value.length !== 0 && (
+        <Stations title="Search Results" stations={stations.value} />
       )}
     </div>
   );
