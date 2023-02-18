@@ -28,11 +28,10 @@ export default function TopStations() {
 
   return (
     <div>
-      {stations.value.length !== 0 && (
-        <Stations title="Top Stations" stations={stations.value} />
-      )}
+      {stations.value.length !== 0 &&
+        <Stations title="Top Stations" stations={stations} />}
       <button style={button74} onClick={nextPage}>next</button>
-      {(offset.value >= pageNumItems) &&
+      {offset.value >= pageNumItems &&
         <button style={button74} onClick={backPage}>back</button>}
     </div>
   );

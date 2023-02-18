@@ -1,7 +1,7 @@
 import { useEffect } from "preact/hooks";
 import { StationType } from "@/interfaces/station.ts";
 import Audioplay from "@/components/AudioPlay.tsx";
-import { useSignal } from "https://esm.sh/v106/@preact/signals@1.0.3/X-ZS8q/dist/signals";
+import { Signal, useComputed, useSignal } from "@preact/signals";
 
 export const button74 = {
   backgroundColor: "#fbeee0",
@@ -178,15 +178,19 @@ const Station = (
 export function Stations(
   { title, stations, updateFavStations }: {
     title: string;
-    stations: StationType[];
+    stations: Signal<StationType[]>;
     updateFavStations?: () => void;
   },
 ) {
   const pageNumItems = 20;
   const pager = useSignal(0);
-  const displayStations = useSignal<StationType[]>(
-    stations.slice(pager.value, pager.value + pageNumItems),
-  );
+  const displayStations = useComputed(() => {
+    return stations.value.slice(
+      pager.value,
+      pager.value + pageNumItems,
+    );
+  });
+
   const activeStaion = useSignal<StationType | undefined>(
     undefined,
   );
@@ -209,13 +213,6 @@ export function Stations(
     "fontWeight": "light",
   };
 
-  useEffect(() => {
-    displayStations.value = stations.slice(
-      pager.value,
-      pager.value + pageNumItems,
-    );
-  }, [pager.value, stations]);
-
   return (
     <div>
       <h2 style={h2Style}>{title}</h2>
@@ -230,7 +227,7 @@ export function Stations(
       </div>
       {pager.value > 0 &&
         <button style={button74} onClick={backPage}>back</button>}
-      {(pager.value + pageNumItems < stations.length) &&
+      {(pager.value + pageNumItems < stations.value.length) &&
         <button style={button74} onClick={nextPage}>next</button>}
     </div>
   );
@@ -254,7 +251,7 @@ export default function StationMain(
         (
           <Stations
             title={title ? title : "Local Stations"}
-            stations={stations.value}
+            stations={stations}
           />
         )}
     </div>

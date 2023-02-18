@@ -1,22 +1,23 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
 import { StationType } from "@/interfaces/station.ts";
 import { Stations } from "@/islands/StatioMain.tsx";
+import { useSignal } from "@preact/signals";
 
 export default function FavStations() {
-  const [stations, setStations] = useState<StationType[]>([]);
+  const stations = useSignal<StationType[]>([]);
+
   const updateFavStations = () => {
     const favStations = localStorage.getItem("favStations");
-    if (favStations) {
-      setStations(JSON.parse(favStations));
-    }
+    if (favStations) stations.value = JSON.parse(favStations);
   };
+
   useEffect(() => {
     updateFavStations();
   });
 
   return (
     <div>
-      {stations.length !== 0
+      {stations.value.length !== 0
         ? (
           <Stations
             title="Favourite Stations"

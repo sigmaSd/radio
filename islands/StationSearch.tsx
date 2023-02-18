@@ -20,7 +20,6 @@ export default function SearchStations() {
 
   async function search() {
     let urlMethod: string;
-
     switch (method.value) {
       case "Country":
         urlMethod = "bycountry";
@@ -34,14 +33,13 @@ export default function SearchStations() {
       default:
         throw "ureachable";
     }
-    stations.value = (await (
-      await fetch(
-        `${apiUrl}/${urlMethod}/${input}`,
-        {
-          headers: HEADERS,
-        },
-      )
-    ).json()).sort(sortByVotes);
+
+    stations.value = await fetch(
+      `${apiUrl}/${urlMethod}/${input}`,
+      {
+        headers: HEADERS,
+      },
+    ).then((res) => res.json()).then((stations) => stations.sort(sortByVotes));
   }
 
   const button54 = {
@@ -87,7 +85,7 @@ export default function SearchStations() {
       </select>
       <button style={button54} onClick={search}>Search</button>
       {stations.value.length !== 0 && (
-        <Stations title="Search Results" stations={stations.value} />
+        <Stations title="Search Results" stations={stations} />
       )}
     </div>
   );
