@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import { AppProps } from "$fresh/server.ts";
-import NavigationBar from "../components/NavigationBar.tsx";
+import NavigationBar from "@/components/NavigationBar.tsx";
 
 export default function App({ Component }: AppProps) {
   const appStyle = {

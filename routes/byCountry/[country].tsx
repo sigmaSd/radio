@@ -1,6 +1,6 @@
 import { PageProps } from "$fresh/src/server/types.ts";
-import AudioPlay from "../../components/AudioPlay.tsx";
-import StationMain from "../../islands/StatioMain.tsx";
+import AudioPlay from "@/components/AudioPlay.tsx";
+import StationMain from "@/islands/StatioMain.tsx";
 
 export default function Page(props: PageProps) {
   const country = decodeURIComponent(props.params.country); // handle things like "United%20Kingdom"

@@ -1,5 +1,5 @@
-import AudioPlay from "../components/AudioPlay.tsx";
-import FavStations from "../islands/FavStations.tsx";
+import AudioPlay from "@/components/AudioPlay.tsx";
+import FavStations from "@/islands/FavStations.tsx";
 
 export default function Page() {
   return (

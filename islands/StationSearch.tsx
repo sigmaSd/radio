@@ -1,6 +1,11 @@
 import { useEffect, useState } from "preact/hooks";
-import { StationType } from "../interfaces/station.ts";
-import { apiUrl, HEADERS, sortByVotes, Stations } from "./StatioMain.tsx";
+import { StationType } from "@/interfaces/station.ts";
+import {
+  apiUrl,
+  HEADERS,
+  sortByVotes,
+  Stations,
+} from "@/islands/StatioMain.tsx";
 
 export default function SearchStations() {
   const [input, setInput] = useState("");

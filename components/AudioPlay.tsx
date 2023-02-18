@@ -1,4 +1,4 @@
-import { StationType } from "../interfaces/station.ts";
+import { StationType } from "@/interfaces/station.ts";
 
 export default function AudioPlay() {
   const imgStyle = {

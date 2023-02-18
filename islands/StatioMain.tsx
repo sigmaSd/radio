@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
-import { StationType } from "../interfaces/station.ts";
-import Audioplay from "../components/AudioPlay.tsx";
+import { StationType } from "@/interfaces/station.ts";
+import Audioplay from "@/components/AudioPlay.tsx";
 
 export const button74 = {
   backgroundColor: "#fbeee0",

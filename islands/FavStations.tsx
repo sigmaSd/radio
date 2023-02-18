@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
-import { StationType } from "../interfaces/station.ts";
-import { Stations } from "./StatioMain.tsx";
+import { StationType } from "@/interfaces/station.ts";
+import { Stations } from "@/islands/StatioMain.tsx";
 
 export default function FavStations() {
   const [stations, setStations] = useState<StationType[]>([]);
