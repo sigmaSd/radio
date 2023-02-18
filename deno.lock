@@ -106,6 +106,7 @@
     "https://deno.land/x/sigmastd@0.2.0/src/std/utils.ts": "5b84ee53b09fc1c0b2e253d09b796fe6cd7000a7c4eae0c52211fe30487131b8",
     "https://deno.land/x/simple_shell@0.10.0/src/arrayUtils.ts": "fe22ce4f9e43b7b49259d296bbf6584af6797cb30f2491997f89acfe053f9533",
     "https://deno.land/x/simple_shell@0.10.0/src/stringUtils.ts": "f47d385a20b7bf28c7b037d500d5ff423a747472325a9d1c96d60414345a0447",
+    "https://deno.land/x/simple_shell@0.9.0/src/stringUtils.ts": "f47d385a20b7bf28c7b037d500d5ff423a747472325a9d1c96d60414345a0447",
     "https://deno.land/x/sqlite@v3.2.1/build/sqlite.d.ts": "e83278ce9e8b3279c793f0cac2ab4e4da3b2ed024ded646c0c06e9c2f8e57b71",
     "https://deno.land/x/sqlite@v3.2.1/build/sqlite.js": "087db9bdacd1e5bb8b538ba328e5105571cc6d716deb9923e2eb5c8af763991a",
     "https://deno.land/x/sqlite@v3.2.1/build/vfs.js": "baff72655c0916c906327fe6703c6a47daa1346e55c2eaa2629bcd879a673c8d",
