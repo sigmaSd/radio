@@ -10,7 +10,7 @@
   "fmt": {
     "files": {
       "exclude": [
-        "static/db/db.json"
+        "static_server/db/db.json"
       ]
     }
   },
