@@ -1,10 +1,11 @@
-import { useEffect, useState } from "preact/hooks";
-import { StationType } from "@/interfaces/station.ts";
+import { useEffect } from "preact/hooks";
 import { apiUrl, button74, HEADERS, Stations } from "@/islands/StatioMain.tsx";
+import { Signal, useSignal } from "@preact/signals";
+import { StationType } from "@/interfaces/station.ts";
 
 export default function TopStations() {
-  const [stations, setStations] = useState<StationType[]>([]);
-  const [offset, setOffset] = useState(0);
+  const stations: Signal<StationType[]> = useSignal([]);
+  const offset = useSignal(0);
   const pageNumItems = 20;
 
   useEffect(() => {
@@ -14,24 +15,24 @@ export default function TopStations() {
         headers: HEADERS,
       },
     ).then((res) => res.json()).then((data) => {
-      setStations(data);
+      stations.value = data;
     });
-  }, [offset]);
+  }, [offset.value]);
 
   function nextPage() {
-    setOffset(offset + pageNumItems);
+    offset.value += pageNumItems;
   }
   function backPage() {
-    setOffset(offset - pageNumItems);
+    offset.value -= pageNumItems;
   }
 
   return (
     <div>
-      {stations.length !== 0 && (
-        <Stations title="Top Stations" stations={stations} />
+      {stations.value.length !== 0 && (
+        <Stations title="Top Stations" stations={stations.value} />
       )}
       <button style={button74} onClick={nextPage}>next</button>
-      {(offset >= pageNumItems) &&
+      {(offset.value >= pageNumItems) &&
         <button style={button74} onClick={backPage}>back</button>}
     </div>
   );
