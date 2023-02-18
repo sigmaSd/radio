@@ -1,6 +1,7 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
 import { StationType } from "@/interfaces/station.ts";
 import Audioplay from "@/components/AudioPlay.tsx";
+import { useSignal } from "https://esm.sh/v106/@preact/signals@1.0.3/X-ZS8q/dist/signals";
 
 export const button74 = {
   backgroundColor: "#fbeee0",
@@ -25,6 +26,7 @@ export const HEADERS = {
   "User-Agent": "https://github.com/sigmaSd/freshRadio",
 };
 
+// for testing
 let useRemoteDb: boolean;
 try {
   useRemoteDb = !!Deno.env.get("DENO_DEPLOYMENT_ID");
@@ -59,10 +61,9 @@ export async function getStations(cn: string | undefined) {
 }
 
 const Station = (
-  { station, activeStaion, setActiveStation, updateFavStations }: {
+  { station, activeStaion, updateFavStations }: {
     station: StationType;
     activeStaion: StationType | undefined;
-    setActiveStation: (station: StationType) => void;
     updateFavStations?: () => void;
   },
 ) => {
@@ -89,7 +90,7 @@ const Station = (
     color: "#422800",
   };
 
-  const [trigger, setForceRender] = useState(false);
+  const trigger = useSignal(false);
 
   const toggleFavStation = (station: StationType) => {
     const currentFavStations: StationType[] = JSON.parse(
@@ -109,7 +110,9 @@ const Station = (
     if (updateFavStations) {
       updateFavStations();
     }
-    setForceRender(!trigger);
+
+    // force redraw
+    trigger.value = !trigger.value;
   };
   const starStyle = () => {
     const currentFavStations: StationType[] = JSON.parse(
@@ -136,7 +139,7 @@ const Station = (
         }}
         style={styles}
         onClick={() => {
-          setActiveStation(station);
+          activeStaion = station;
           Audioplay.playStation(station);
         }}
       >
@@ -180,18 +183,19 @@ export function Stations(
   },
 ) {
   const pageNumItems = 20;
-  const [pager, setPager] = useState(0);
-  const [displayStations, setDisplayStations] = useState<StationType[]>(
-    stations.slice(pager, pager + pageNumItems),
+  const pager = useSignal(0);
+  const displayStations = useSignal<StationType[]>(
+    stations.slice(pager.value, pager.value + pageNumItems),
   );
-  useEffect(() => {
-    setDisplayStations(stations.slice(pager, pager + pageNumItems));
-  }, [pager, stations]);
+  const activeStaion = useSignal<StationType | undefined>(
+    undefined,
+  );
+
   function nextPage() {
-    setPager(pager + pageNumItems);
+    pager.value += pageNumItems;
   }
   function backPage() {
-    setPager(pager - pageNumItems);
+    pager.value -= pageNumItems;
   }
 
   const divStyle = {
@@ -205,25 +209,28 @@ export function Stations(
     "fontWeight": "light",
   };
 
-  const [activeStaion, setActiveStation] = useState<StationType | undefined>(
-    undefined,
-  );
+  useEffect(() => {
+    displayStations.value = stations.slice(
+      pager.value,
+      pager.value + pageNumItems,
+    );
+  }, [pager.value, stations]);
+
   return (
     <div>
       <h2 style={h2Style}>{title}</h2>
       <div style={divStyle}>
-        {displayStations.map((station) => (
+        {displayStations.value.map((station) => (
           <Station
             station={station}
-            activeStaion={activeStaion}
-            setActiveStation={setActiveStation}
+            activeStaion={activeStaion.value}
             updateFavStations={updateFavStations}
           />
         ))}
       </div>
-      {pager > 0 &&
+      {pager.value > 0 &&
         <button style={button74} onClick={backPage}>back</button>}
-      {(pager + pageNumItems < stations.length) &&
+      {(pager.value + pageNumItems < stations.length) &&
         <button style={button74} onClick={nextPage}>next</button>}
     </div>
   );
@@ -235,19 +242,19 @@ export default function StationMain(
     country?: string;
   },
 ) {
-  const [stations, setStations] = useState<StationType[]>([]);
+  const stations = useSignal<StationType[]>([]);
   useEffect(() => {
-    getStations(country).then((stations) => {
-      setStations(stations.sort(sortByVotes));
+    getStations(country).then((newStations) => {
+      stations.value = newStations.sort(sortByVotes);
     });
   }, []);
   return (
     <div>
-      {stations !== null &&
+      {stations.value !== null &&
         (
           <Stations
             title={title ? title : "Local Stations"}
-            stations={stations}
+            stations={stations.value}
           />
         )}
     </div>
