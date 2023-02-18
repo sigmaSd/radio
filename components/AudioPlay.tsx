@@ -1,28 +1,15 @@
 import { StationType } from "@/interfaces/station.ts";
 
 export default function AudioPlay() {
-  const imgStyle = {
-    width: "150px",
-    height: "150px",
-    fontSize: "20px",
-    fontWeight: "bold",
-    background: "rgb(204, 204, 204)",
-    border: "4px solid #fa4",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    marginRight: "5px",
-  };
-  const divStyle = {
-    display: "none",
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  };
   return (
-    <div id="audioDiv" style={divStyle}>
-      <img id="audioImg" style={imgStyle} />
+    <div
+      id="audioDiv"
+      class="hidden flex-wrap flex-row justify-center items-center"
+    >
+      <img
+        id="audioImg"
+        class="w-40 h-40 text-xl font-bold bg-gray-400 border-4 border-yellow-400 flex items-center justify-evenly mr-5"
+      />
       <audio id="audio" controls />
     </div>
   );

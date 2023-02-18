@@ -18,7 +18,8 @@ import * as $11 from "./routes/top.tsx";
 import * as $$0 from "./islands/FavStations.tsx";
 import * as $$1 from "./islands/StatioMain.tsx";
 import * as $$2 from "./islands/StationSearch.tsx";
-import * as $$3 from "./islands/TopStations.tsx";
+import * as $$3 from "./islands/Stations.tsx";
+import * as $$4 from "./islands/TopStations.tsx";
 
 const manifest = {
   routes: {
@@ -39,7 +40,8 @@ const manifest = {
     "./islands/FavStations.tsx": $$0,
     "./islands/StatioMain.tsx": $$1,
     "./islands/StationSearch.tsx": $$2,
-    "./islands/TopStations.tsx": $$3,
+    "./islands/Stations.tsx": $$3,
+    "./islands/TopStations.tsx": $$4,
   },
   baseUrl: import.meta.url,
   config,

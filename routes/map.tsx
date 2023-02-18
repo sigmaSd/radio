@@ -1,21 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 
 export default function Map() {
-  /* CSS */
-  const buttonStyle = {
-    appearance: "none",
-    backgroundColor: "#2ea44f",
-    border: "1px solid rgba(27, 31, 35, .15)",
-    borderRadius: "6px",
-    boxShadow: "rgba(27, 31, 35, .1) 0 1px 0",
-    boxSizing: "border-box",
-    color: "#fff",
-    cursor: "pointer",
-    display: "inline-block",
-    marginTop: "5px",
-    width: "150px",
-    height: "30px",
-  };
   return (
     <div>
       <Head>
@@ -28,7 +13,10 @@ export default function Map() {
         <link rel="stylesheet" href="/map/map.css" />
       </Head>
       <div id="map"></div>
-      <button style={buttonStyle} id="goBtn">
+      <button
+        class="bg-green-600 border border-gray-400 rounded-md shadow-sm py-2 px-4 text-white font-bold cursor-pointer inline-block mt-5 w-150 h-30"
+        id="goBtn"
+      >
         Go!
       </button>
       <script type="module" src="/map/map.js" />

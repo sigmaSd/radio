@@ -1,12 +1,8 @@
 import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 import { StationType } from "@/interfaces/station.ts";
-import {
-  apiUrl,
-  HEADERS,
-  sortByVotes,
-  Stations,
-} from "@/islands/StatioMain.tsx";
+import Stations, { apiUrl, HEADERS, sortByVotes } from "@/islands/Stations.tsx";
+import { button54 } from "@/styles/styles.ts";
 
 export default function SearchStations() {
   const input = useSignal("");
@@ -41,24 +37,6 @@ export default function SearchStations() {
       },
     ).then((res) => res.json()).then((stations) => stations.sort(sortByVotes));
   }
-
-  const button54 = {
-    fontFamily: '"Open Sans", sans-serif',
-    fontSize: "16px",
-    letterSpacing: "2px",
-    textDecoration: "none",
-    textTransform: "uppercase",
-    color: "#000",
-    cursor: "pointer",
-    border: "3px solid",
-    padding: "0.25em 0.5em",
-    boxShadow:
-      "1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px",
-    position: "relative",
-    userSelect: "none",
-    webkitUserSelect: "none",
-    touchAction: "manipulation",
-  };
 
   return (
     <div>

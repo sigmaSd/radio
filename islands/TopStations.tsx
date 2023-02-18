@@ -1,7 +1,8 @@
 import { useEffect } from "preact/hooks";
-import { apiUrl, button74, HEADERS, Stations } from "@/islands/StatioMain.tsx";
+import Stations, { apiUrl, HEADERS } from "@/islands/Stations.tsx";
 import { Signal, useSignal } from "@preact/signals";
 import { StationType } from "@/interfaces/station.ts";
+import { button74 } from "@/styles/styles.ts";
 
 export default function TopStations() {
   const stations: Signal<StationType[]> = useSignal([]);
@@ -30,9 +31,9 @@ export default function TopStations() {
     <div>
       {stations.value.length !== 0 &&
         <Stations title="Top Stations" stations={stations} />}
-      <button style={button74} onClick={nextPage}>next</button>
       {offset.value >= pageNumItems &&
         <button style={button74} onClick={backPage}>back</button>}
+      <button style={button74} onClick={nextPage}>next</button>
     </div>
   );
 }

@@ -1,0 +1,36 @@
+export const button74 = {
+  backgroundColor: "#fbeee0",
+  border: "2px solid #422800",
+  borderRadius: "30px",
+  boxShadow: "#422800 4px 4px 0 0",
+  color: "#422800",
+  cursor: "pointer",
+  display: "inline-block",
+  fontWeight: "600",
+  fontSize: "18px",
+  padding: "0 18px",
+  lineHeight: "50px",
+  textAlign: "center",
+  textDecoration: "none",
+  userSelect: "none",
+  webkitUserSelect: "none",
+  touchAction: "manipulation",
+};
+
+export const button54 = {
+  fontFamily: '"Open Sans", sans-serif',
+  fontSize: "16px",
+  letterSpacing: "2px",
+  textDecoration: "none",
+  textTransform: "uppercase",
+  color: "#000",
+  cursor: "pointer",
+  border: "3px solid",
+  padding: "0.25em 0.5em",
+  boxShadow:
+    "1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px",
+  position: "relative",
+  userSelect: "none",
+  webkitUserSelect: "none",
+  touchAction: "manipulation",
+};

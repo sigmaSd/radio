@@ -26,34 +26,15 @@ export default function NavigationBar() {
     },
   ];
 
-  const ulS = {
-    listStyleType: "none",
-    margin: "0",
-    padding: "0",
-    overflow: "hidden",
-    backgroundColor: "#333",
-  };
-  const liS = {
-    float: "left",
-    display: "block",
-    color: "white",
-    textAlign: "center",
-    textDecoration: "none",
-  };
-  const aS = {
-    display: "block",
-    color: "white",
-    textAlign: "center",
-    padding: "14px 16px",
-    textDecoration: "none",
-  };
-
   return (
     <nav>
-      <ul style={ulS}>
+      <ul class="list-none m-0 p-0 overflow-hidden bg-gray-800">
         {items.map((item) => (
-          <li style={liS}>
-            <a style={aS} href={item.href}>
+          <li class="float-left">
+            <a
+              class="block text-white text-center py-4 px-6 no-underline"
+              href={item.href}
+            >
               {item.name}
             </a>
           </li>

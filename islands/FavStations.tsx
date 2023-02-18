@@ -1,18 +1,15 @@
 import { useEffect } from "preact/hooks";
 import { StationType } from "@/interfaces/station.ts";
-import { Stations } from "@/islands/StatioMain.tsx";
+import Stations from "@/islands/Stations.tsx";
 import { useSignal } from "@preact/signals";
 
+///FIXME: for somereason the active station doesn't get highlighted
 export default function FavStations() {
   const stations = useSignal<StationType[]>([]);
 
-  const updateFavStations = () => {
+  useEffect(() => {
     const favStations = localStorage.getItem("favStations");
     if (favStations) stations.value = JSON.parse(favStations);
-  };
-
-  useEffect(() => {
-    updateFavStations();
   });
 
   return (
@@ -22,7 +19,6 @@ export default function FavStations() {
           <Stations
             title="Favourite Stations"
             stations={stations}
-            updateFavStations={updateFavStations}
           />
         )
         : (
