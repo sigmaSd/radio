@@ -25,13 +25,13 @@ export default function Map() {
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossOrigin=""
         />
-        <link rel="stylesheet" href="/global.css" />
+        <link rel="stylesheet" href="/map/map.css" />
       </Head>
       <div id="map"></div>
       <button style={buttonStyle} id="goBtn">
         Go!
       </button>
-      <script type="module" src="/map.js" />
+      <script type="module" src="/map/map.js" />
     </div>
   );
 }

@@ -157,13 +157,13 @@ const Station = (
           {(starStyle().color === "yellow")
             ? (
               <img
-                src="/star-filled.svg"
+                src="/icon/star-filled.svg"
                 style={{ visibility: "visible", width: "20px" }}
               />
             )
             : (
               <img
-                src="/star-unfilled.svg"
+                src="/icon/star-unfilled.svg"
                 style={{ visibility: "visible", width: "20px" }}
               />
             )}
