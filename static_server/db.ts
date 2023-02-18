@@ -1,4 +1,3 @@
-//FIXME: This fails when its yanked to @/static_server/deps.ts
 import { DB } from "https://deno.land/x/sqlite@v3.7.0/mod.ts";
 import { StationType } from "@/interfaces/station.ts";
 

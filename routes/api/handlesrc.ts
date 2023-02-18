@@ -1,5 +1,5 @@
 import { Handlers } from "$fresh/server.ts";
-import { sigmastd as _ } from "@/static_server/deps.ts";
+import {} from "https://deno.land/x/sigmastd@0.2.0/mod.ts";
 
 export const handler: Handlers = {
   async POST(req) {
