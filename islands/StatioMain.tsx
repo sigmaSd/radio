@@ -2,6 +2,7 @@ import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 import { StationType } from "@/interfaces/station.ts";
 import Stations, { apiUrl, HEADERS, sortByVotes } from "@/islands/Stations.tsx";
+import { Partial } from "$fresh/runtime.ts";
 
 async function getStations(cn: string | undefined) {
   if (cn === undefined) {
