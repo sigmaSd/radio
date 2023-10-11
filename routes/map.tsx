@@ -2,7 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 
 export default function Map() {
   return (
-    <div f-client-nav={false}>
+    <div>
       <Head>
         <link
           rel="stylesheet"
