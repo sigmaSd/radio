@@ -1,3 +1,4 @@
+/// <reference lib="deno.ns" />
 import { DB } from "https://deno.land/x/sqlite@v3.7.0/mod.ts";
 import { StationType } from "@/interfaces/station.ts";
 
