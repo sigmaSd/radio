@@ -6,7 +6,7 @@ const createRadioDb = async (arg?: string) => {
     await Deno.mkdir("./static_server/db");
   } catch (e) {
     if (e instanceof Deno.errors.AlreadyExists) {
-      console.log("db folder already exists");
+      /**/
     } else {
       throw e;
     }
@@ -18,13 +18,21 @@ const createRadioDb = async (arg?: string) => {
     ).then((res) => res.json());
     const oldDb = await Deno.readTextFile("./static_server/db/db.json");
     if (newDb === oldDb) {
-      console.log("db is up to date");
+      console.log("database is up to date");
     } else {
-      console.log("db is outdated");
+      console.log("database is outdated");
     }
     return;
   }
 
+  let size = (await fetch("https://de1.api.radio-browser.info/json/stations"))
+    .headers.get("content-length");
+  if (size) size = formatBytes(parseFloat(size));
+
+  console.log(
+    `%cfetching the latest radio database (${size})`,
+    "color:green",
+  );
   // fetch the json db
   await (await fetch("https://de1.api.radio-browser.info/json/stations")).body
     ?.pipeTo((await Deno.create("./static_server/db/db.json")).writable);
@@ -49,6 +57,17 @@ const createRadioDb = async (arg?: string) => {
     ),
   );
 };
+
+function formatBytes(bytes: number, decimals = 2) {
+  if (bytes === 0) return "0 Bytes";
+
+  const k = 1024;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + " " +
+    sizes[i];
+}
 
 if (import.meta.main) {
   await createRadioDb(Deno.args[0]);
