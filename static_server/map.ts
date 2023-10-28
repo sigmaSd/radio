@@ -2,7 +2,7 @@
 /// <reference no-default-lib="true" />
 /// <reference lib="dom" />
 /// <reference lib="es2015" />
-import "https://esm.sh/leaflet@1.9.3";
+import "https://esm.sh/leaflet@1.9.4";
 import L from "https://esm.sh/leaflet@1.9.3";
 
 drawMap();
