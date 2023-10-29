@@ -7,6 +7,7 @@ export default function App({ Component }: AppProps) {
   return (
     <>
       <Head>
+        <title>Rodio</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavigationBar />
