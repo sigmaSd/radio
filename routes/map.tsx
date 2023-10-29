@@ -2,7 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 
 export default function Map() {
   return (
-    <div>
+    <>
       <Head>
         <link
           rel="stylesheet"
@@ -20,6 +20,6 @@ export default function Map() {
         Go!
       </button>
       <script type="module" src="/map/map.js" />
-    </div>
+    </>
   );
 }

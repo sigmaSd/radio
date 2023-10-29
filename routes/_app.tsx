@@ -5,7 +5,7 @@ import AudioPlay from "@/components/AudioPlay.tsx";
 
 export default function App({ Component }: AppProps) {
   return (
-    <div>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -18,6 +18,6 @@ export default function App({ Component }: AppProps) {
           </Partial>
         </div>
       </body>
-    </div>
+    </>
   );
 }
