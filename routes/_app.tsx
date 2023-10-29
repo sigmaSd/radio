@@ -9,6 +9,9 @@ export default function App({ Component }: AppProps) {
       <Head>
         <title>Rodio</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link rel="apple-touch-icon" href="foo-icon-48x48.png" />
+        <meta name="theme-color" content="#3b82f6" />
       </Head>
       <NavigationBar />
       <body f-client-nav>

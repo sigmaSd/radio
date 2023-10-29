@@ -1,0 +1,54 @@
+{
+  "name": "Foo",
+  "short_name": "Rodio",
+  "description": "Listen to radio stations",
+  "id": "/",
+  "scope": "/",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "foo-48x48.png",
+      "type": "image/png",
+      "sizes": "48x48",
+      "purpose": "maskable"
+    },
+    {
+      "src": "foo-icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "foo-icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "foo-ss.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Notes in Mac"
+    }
+  ],
+  "display_override": ["standalone", "window-controls-overlay"],
+  "shortcuts": [
+    {
+      "name": "Rodio",
+      "short_name": "Rodio",
+      "description": "Listen to Radio stations",
+      "url": "/foo",
+      "icons": [
+        {
+          "src": "foo-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
