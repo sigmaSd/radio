@@ -8,7 +8,7 @@ export default function App({ Component }: AppProps) {
     <>
       <Head>
         <title>Rodio</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
       <NavigationBar />
       <body f-client-nav>
