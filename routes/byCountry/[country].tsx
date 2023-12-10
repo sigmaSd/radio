@@ -9,7 +9,7 @@ export default function Page(props: PageProps) {
   // it changes the windows location directly so fresh is not aware of it
   // and so it won't be wrapped with _app.tsx
   return (
-    <Partial name="body">
+    <Partial name="country">
       <StationMain title={country} country={country} />
     </Partial>
   );

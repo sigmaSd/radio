@@ -2,47 +2,48 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/_app.tsx";
-import * as $1 from "./routes/api/db/bycountry/[country].ts";
-import * as $2 from "./routes/api/db/bylanguage/[language].ts";
-import * as $3 from "./routes/api/db/byname/[name].ts";
-import * as $4 from "./routes/api/db/topclick.ts";
-import * as $5 from "./routes/api/handlesrc.ts";
-import * as $6 from "./routes/byCountry/[country].tsx";
-import * as $7 from "./routes/fav.tsx";
-import * as $8 from "./routes/index.tsx";
-import * as $9 from "./routes/map.tsx";
-import * as $10 from "./routes/search.tsx";
-import * as $11 from "./routes/top.tsx";
-import * as $$0 from "./islands/FavStations.tsx";
-import * as $$1 from "./islands/StatioMain.tsx";
-import * as $$2 from "./islands/StationSearch.tsx";
-import * as $$3 from "./islands/Stations.tsx";
-import * as $$4 from "./islands/TopStations.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $api_db_bycountry_country_ from "./routes/api/db/bycountry/[country].ts";
+import * as $api_db_bylanguage_language_ from "./routes/api/db/bylanguage/[language].ts";
+import * as $api_db_byname_name_ from "./routes/api/db/byname/[name].ts";
+import * as $api_db_topclick from "./routes/api/db/topclick.ts";
+import * as $api_handlesrc from "./routes/api/handlesrc.ts";
+import * as $byCountry_country_ from "./routes/byCountry/[country].tsx";
+import * as $fav from "./routes/fav.tsx";
+import * as $index from "./routes/index.tsx";
+import * as $map from "./routes/map.tsx";
+import * as $search from "./routes/search.tsx";
+import * as $top from "./routes/top.tsx";
+import * as $FavStations from "./islands/FavStations.tsx";
+import * as $StatioMain from "./islands/StatioMain.tsx";
+import * as $StationSearch from "./islands/StationSearch.tsx";
+import * as $Stations from "./islands/Stations.tsx";
+import * as $TopStations from "./islands/TopStations.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/_app.tsx": $0,
-    "./routes/api/db/bycountry/[country].ts": $1,
-    "./routes/api/db/bylanguage/[language].ts": $2,
-    "./routes/api/db/byname/[name].ts": $3,
-    "./routes/api/db/topclick.ts": $4,
-    "./routes/api/handlesrc.ts": $5,
-    "./routes/byCountry/[country].tsx": $6,
-    "./routes/fav.tsx": $7,
-    "./routes/index.tsx": $8,
-    "./routes/map.tsx": $9,
-    "./routes/search.tsx": $10,
-    "./routes/top.tsx": $11,
+    "./routes/_app.tsx": $_app,
+    "./routes/api/db/bycountry/[country].ts": $api_db_bycountry_country_,
+    "./routes/api/db/bylanguage/[language].ts": $api_db_bylanguage_language_,
+    "./routes/api/db/byname/[name].ts": $api_db_byname_name_,
+    "./routes/api/db/topclick.ts": $api_db_topclick,
+    "./routes/api/handlesrc.ts": $api_handlesrc,
+    "./routes/byCountry/[country].tsx": $byCountry_country_,
+    "./routes/fav.tsx": $fav,
+    "./routes/index.tsx": $index,
+    "./routes/map.tsx": $map,
+    "./routes/search.tsx": $search,
+    "./routes/top.tsx": $top,
   },
   islands: {
-    "./islands/FavStations.tsx": $$0,
-    "./islands/StatioMain.tsx": $$1,
-    "./islands/StationSearch.tsx": $$2,
-    "./islands/Stations.tsx": $$3,
-    "./islands/TopStations.tsx": $$4,
+    "./islands/FavStations.tsx": $FavStations,
+    "./islands/StatioMain.tsx": $StatioMain,
+    "./islands/StationSearch.tsx": $StationSearch,
+    "./islands/Stations.tsx": $Stations,
+    "./islands/TopStations.tsx": $TopStations,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
