@@ -1,9 +1,9 @@
 import { Head, Partial } from "$fresh/runtime.ts";
-import type { AppProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
 import NavigationBar from "@/components/NavigationBar.tsx";
 import AudioPlay from "@/components/AudioPlay.tsx";
 
-export default function App({ Component }: AppProps) {
+export default function App({ Component }: PageProps) {
   return (
     <>
       <Head>
