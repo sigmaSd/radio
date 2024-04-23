@@ -1,5 +1,5 @@
 if ("serviceWorker" in navigator) {
-  addEventListener("load", function () {
+  addEventListener("load", () => {
     navigator.serviceWorker
       // we're going to give it scope / so it needs to be in the root of the repo
       .register("/sw.js")

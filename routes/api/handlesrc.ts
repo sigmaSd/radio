@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import {} from "@/static_server/deps.ts";
 
 export const handler: Handlers = {

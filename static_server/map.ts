@@ -12,7 +12,8 @@ async function drawMap() {
     .resolvedOptions()
     .timeZone.split("/")[1];
 
-  const btn = document.getElementById("goBtn")!;
+  const btn = document.getElementById("goBtn");
+  if (!btn) throw new Error("no btn with id goBtn");
   btn.onclick = () => {
     window.location.href = `/byCountry/${activeCountry}`;
   };
@@ -64,7 +65,7 @@ async function getLatLng(cn: string): Promise<[number, number]> {
   ).then((r) => r.json());
   const lat = resp[0].lat;
   const lon = resp[0].lon;
-  return [parseFloat(lat), parseFloat(lon)];
+  return [Number.parseFloat(lat), Number.parseFloat(lon)];
 }
 
 async function countryFromLatLng(

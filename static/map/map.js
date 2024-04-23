@@ -54,8 +54,8 @@ async function getLatLng(cn) {
   const lat = resp[0].lat;
   const lon = resp[0].lon;
   return [
-    parseFloat(lat),
-    parseFloat(lon),
+    Number.parseFloat(lat),
+    Number.parseFloat(lon),
   ];
 }
 async function countryFromLatLng({ lat, lng }) {

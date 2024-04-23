@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 
-export default function Map() {
+export default function RadioMap() {
   return (
     <>
       <Head>
@@ -12,8 +12,9 @@ export default function Map() {
         />
         <link rel="stylesheet" href="/map/map.css" />
       </Head>
-      <div id="map"></div>
+      <div id="map" />
       <button
+        type="button"
         class="bg-green-600 border border-gray-400 rounded-md shadow-sm py-2 px-4 text-white font-bold cursor-pointer inline-block mt-5 w-150 h-30"
         id="goBtn"
       >

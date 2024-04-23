@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
-import { StationType } from "@/interfaces/station.ts";
+import type { StationType } from "@/interfaces/station.ts";
 import Audioplay from "@/components/AudioPlay.tsx";
-import { Signal, useComputed, useSignal } from "@preact/signals";
+import { type Signal, useComputed, useSignal } from "@preact/signals";
 import { button74 } from "@/styles/styles.ts";
 
 export const HEADERS = {
@@ -34,9 +34,8 @@ const Station = (
   const stationName = (name: string) => {
     if (name.length > 12) {
       return `${name.slice(0, 12)}..`;
-    } else {
-      return name;
     }
+    return name;
   };
 
   const stationStyle = {
@@ -93,6 +92,7 @@ const Station = (
   return (
     <div>
       <button
+        type="button"
         style={stationStyle}
         onClick={() => {
           activeStaion.value = station;
@@ -104,18 +104,21 @@ const Station = (
       <div class="flex justify-center">
         <p class="font-bold">{stationName(station.name)}</p>
         <button
+          type="button"
           class="invisible"
           onClick={() => toggleFavStation(station)}
         >
           {(starStyle().color === "yellow")
             ? (
               <img
+                alt="{x}"
                 src="/icon/star-filled.svg"
                 class="visible w-5"
               />
             )
             : (
               <img
+                alt="{}"
                 src="/icon/star-unfilled.svg"
                 class="visible w-5"
               />
@@ -168,9 +171,9 @@ export default function Stations(
         ))}
       </div>
       {pager.value > 0 &&
-        <button style={button74} onClick={backPage}>back</button>}
+        <button type="button" style={button74} onClick={backPage}>back</button>}
       {(pager.value + pageNumItems < stations.value.length) &&
-        <button style={button74} onClick={nextPage}>next</button>}
+        <button type="button" style={button74} onClick={nextPage}>next</button>}
     </div>
   );
 }

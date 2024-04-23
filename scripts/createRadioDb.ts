@@ -1,4 +1,4 @@
-import { StationType } from "@/interfaces/station.ts";
+import type { StationType } from "@/interfaces/station.ts";
 
 const createRadioDb = async (arg?: string) => {
   // create the db folder
@@ -27,7 +27,7 @@ const createRadioDb = async (arg?: string) => {
 
   let size = (await fetch("https://de1.api.radio-browser.info/json/stations"))
     .headers.get("content-length");
-  if (size) size = formatBytes(parseFloat(size));
+  if (size) size = formatBytes(Number.parseFloat(size));
 
   console.log(
     `%cfetching the latest radio database (${size})`,
@@ -65,8 +65,7 @@ function formatBytes(bytes: number, decimals = 2) {
   const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(decimals)) + " " +
-    sizes[i];
+  return `${Number.parseFloat((bytes / k ** i).toFixed(decimals))} ${sizes[i]}`;
 }
 
 if (import.meta.main) {

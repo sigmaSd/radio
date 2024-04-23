@@ -1,17 +1,18 @@
 import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
-import { StationType } from "@/interfaces/station.ts";
+import type { StationType } from "@/interfaces/station.ts";
 import Stations, { apiUrl, HEADERS, sortByVotes } from "@/islands/Stations.tsx";
 
-async function getStations(cn: string | undefined) {
-  if (cn === undefined) {
-    cn = Intl.DateTimeFormat()
+async function getStations(countryNameOrg?: string) {
+  let countryName = countryNameOrg;
+  if (countryName === undefined) {
+    countryName = Intl.DateTimeFormat()
       .resolvedOptions()
       .timeZone.split("/")[1];
   }
   const stations: StationType[] = await (
     await fetch(
-      `${apiUrl}/bycountry/${cn}`,
+      `${apiUrl}/bycountry/${countryName}`,
       {
         headers: HEADERS,
       },

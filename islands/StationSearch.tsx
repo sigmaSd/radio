@@ -1,6 +1,6 @@
 import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
-import { StationType } from "@/interfaces/station.ts";
+import type { StationType } from "@/interfaces/station.ts";
 import Stations, { apiUrl, HEADERS, sortByVotes } from "@/islands/Stations.tsx";
 import { button54 } from "@/styles/styles.ts";
 
@@ -44,24 +44,22 @@ export default function SearchStations() {
       <input
         style={button54}
         value={input.value}
-        // deno-lint-ignore no-explicit-any
-        onChange={(e: any) => {
-          input.value = e.target.value;
+        onChange={(e) => {
+          input.value = (e?.target as HTMLInputElement).value;
         }}
       />
       <select
         style={button54}
         value={method.value}
-        // deno-lint-ignore no-explicit-any
-        onChange={(e: any) => {
-          method.value = e.target.value;
+        onChange={(e) => {
+          method.value = (e?.target as HTMLInputElement).value;
         }}
       >
         <option>Country</option>
         <option>Language</option>
         <option>Name</option>
       </select>
-      <button style={button54} onClick={search}>Search</button>
+      <button type="button" style={button54} onClick={search}>Search</button>
       {stations.value.length !== 0 && (
         <Stations title="Search Results" stations={stations} />
       )}

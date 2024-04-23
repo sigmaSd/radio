@@ -1,5 +1,5 @@
 import { useEffect } from "preact/hooks";
-import { StationType } from "@/interfaces/station.ts";
+import type { StationType } from "@/interfaces/station.ts";
 import Stations from "@/islands/Stations.tsx";
 import { useSignal } from "@preact/signals";
 

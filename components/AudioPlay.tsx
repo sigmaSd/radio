@@ -1,4 +1,4 @@
-import { StationType } from "@/interfaces/station.ts";
+import type { StationType } from "@/interfaces/station.ts";
 
 export default function AudioPlay() {
   return (
@@ -7,9 +7,12 @@ export default function AudioPlay() {
       class="hidden flex-wrap flex-row justify-center items-center"
     >
       <img
+        alt="Radio logo"
         id="audioImg"
         class="w-40 h-40 text-xl font-bold bg-gray-400 border-4 border-yellow-400 flex items-center justify-evenly mr-5"
       />
+      {/*TODO: maybe add captions for stations that have it*/}
+      {/* biome-ignore lint/a11y/useMediaCaption: <explanation> */}
       <audio id="audio" controls />
     </div>
   );

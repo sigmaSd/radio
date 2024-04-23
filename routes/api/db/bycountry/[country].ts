@@ -1,5 +1,5 @@
-import { Handlers } from "$fresh/server.ts";
-import { StationType } from "@/interfaces/station.ts";
+import type { Handlers } from "$fresh/server.ts";
+import type { StationType } from "@/interfaces/station.ts";
 import { db } from "@/static_server/db.ts";
 
 export const handler: Handlers = {

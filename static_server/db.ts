@@ -1,6 +1,6 @@
 /// <reference lib="deno.ns" />
 import { DB } from "https://deno.land/x/sqlite@v3.7.0/mod.ts";
-import { StationType } from "@/interfaces/station.ts";
+import type { StationType } from "@/interfaces/station.ts";
 
 export const db = new DB("", { memory: true });
 
@@ -15,19 +15,9 @@ const sanitize = (s: string) => s.replaceAll('"', "").replaceAll("'", "");
 db.query(
   `insert into radio_table values ${
     jsonDb.map((station) =>
-      "('" +
-      sanitize(station.name) +
-      "','" +
-      sanitize(station.country) +
-      "','" +
-      sanitize(station.language) +
-      "'," +
-      station.votes +
-      ",'" +
-      sanitize(station.url) +
-      "','" +
-      sanitize(station.favicon) +
-      "')"
-    ).join(",")
+      //deno-fmt-ignore
+      `('${sanitize(station.name)}','${sanitize(station.country)}','${sanitize(station.language)}',${station.votes},'${sanitize(station.url)}','${sanitize(station.favicon)}')`
+    )
+      .join(",")
   }`,
 );

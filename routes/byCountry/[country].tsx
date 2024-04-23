@@ -1,4 +1,4 @@
-import { PageProps } from "$fresh/src/server/types.ts";
+import type { PageProps } from "$fresh/src/server/types.ts";
 import StationMain from "@/islands/StatioMain.tsx";
 import { Partial } from "$fresh/runtime.ts";
 
