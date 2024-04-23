@@ -1,2 +1,3 @@
 static_server/db/db.json
 _fresh
+deno.lock
