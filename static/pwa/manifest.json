@@ -1,10 +1,10 @@
 {
-  "name": "My App",
+  "name": "Rodio",
   "start_url": "/",
   "display": "standalone",
   "icons": [
     {
-      "src": "/pwa/favicon.png",
+      "src": "/favicon.png",
       "type": "image/png",
       "sizes": "256x256"
     }
