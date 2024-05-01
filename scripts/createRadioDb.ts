@@ -1,6 +1,6 @@
 import type { StationType } from "@/interfaces/station.ts";
 
-const createRadioDb = async (arg?: string) => {
+async function createRadioDb(arg?: string) {
   // create the db folder
   try {
     await Deno.mkdir("./static_server/db");
@@ -38,25 +38,63 @@ const createRadioDb = async (arg?: string) => {
     ?.pipeTo((await Deno.create("./static_server/db/db.json")).writable);
 
   // create a new db containing only the needed columns
+  const stationsDb = await Deno.readTextFile("./static_server/db/db.json")
+    .then(JSON.parse)
+    .then((stations) =>
+      stations.map(
+        (s: StationType) => ({
+          name: s.name,
+          country: s.country,
+          language: s.language,
+          votes: s.votes,
+          url: s.url,
+          favicon: s.favicon,
+        }),
+      )
+    );
   await Deno.writeTextFile(
     "./static_server/db/compressed_db.json",
-    JSON.stringify(
-      (await Deno.readTextFile("./static_server/db/db.json").then(JSON.parse))
-        .map(
-          (s: StationType) => {
-            return {
-              name: s.name,
-              country: s.country,
-              language: s.language,
-              votes: s.votes,
-              url: s.url,
-              favicon: s.favicon,
-            };
-          },
-        ),
-    ),
+    JSON.stringify(removeDuplicates(stationsDb)),
   );
-};
+}
+
+function removeDuplicates(stationsDb: StationType[]) {
+  // Counter for duplicate URLs
+  let duplicateCount = 0;
+
+  const filters = [
+    {
+      prop: (station: StationType) => station.name,
+    },
+    {
+      prop: (station: StationType) => station.url,
+    },
+  ];
+
+  let filterMap = new Map();
+  for (const filter of filters) {
+    const nextMap = new Map();
+    const map = (filterMap.size === 0) ? stationsDb : filterMap.values();
+    for (const station of map) {
+      const prop = filter.prop(station).trim();
+      const stationFromProp = nextMap.get(prop);
+      if (!stationFromProp) {
+        nextMap.set(prop, station);
+      } else {
+        duplicateCount++;
+        if (station.votes > stationFromProp.votes) {
+          nextMap.set(prop, station);
+        }
+      }
+    }
+    filterMap = nextMap;
+  }
+
+  console.log("Total number of stations:", stationsDb.length);
+  console.log("Number of duplicate stations:", duplicateCount);
+
+  return [...filterMap.values()];
+}
 
 function formatBytes(bytes: number, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
