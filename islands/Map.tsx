@@ -68,27 +68,21 @@ function MapComponent(
       .bindPopup(`Selected '${activeCountry}'`)
       .openPopup();
     map.setView(latlng, 4);
+
     map.on(
       "click",
       async (ev) => {
         activeMark.remove();
-        const result = await (async () => {
-          const map = ev.target;
 
-          const activeCountryNew = await countryFromLatLng(ev.latlng);
-          if (!activeCountry) {
-            return;
-          }
-          const latlon = await getLatLng(activeCountryNew);
-          const activeMark = leaf.marker(latlon).addTo(map)
-            .bindPopup(`Selected '${activeCountryNew}'`)
-            .openPopup();
-          return [activeMark, activeCountryNew] as const;
-        })();
-        if (result) {
-          activeMark = result[0];
-          setActiveCountry(result[1]);
+        const activeCountryNew = await countryFromLatLng(ev.latlng);
+        if (!activeCountry) {
+          return;
         }
+        const latlng = await getLatLng(activeCountryNew);
+        activeMark = leaf.marker(latlng).addTo(ev.target)
+          .bindPopup(`Selected '${activeCountryNew}'`)
+          .openPopup();
+        setActiveCountry(activeCountryNew);
       },
     );
   }, []);
