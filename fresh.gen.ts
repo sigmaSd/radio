@@ -20,7 +20,7 @@ import * as $StatioMain from "./islands/StatioMain.tsx";
 import * as $StationSearch from "./islands/StationSearch.tsx";
 import * as $Stations from "./islands/Stations.tsx";
 import * as $TopStations from "./islands/TopStations.tsx";
-import { type Manifest } from "$fresh/server.ts";
+import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {

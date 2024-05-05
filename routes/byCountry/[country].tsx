@@ -13,7 +13,7 @@ export default function Page(props: PageProps) {
     // the div breaks that similarity
     <>
       <div>
-        <StationMain title={country} country={country} />;
+        <StationMain title={country} country={country} />
       </div>
     </>
   );
