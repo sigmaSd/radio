@@ -14,9 +14,8 @@ const LeafletContext = createContext<typeof Leaflet | null>(null);
 // LeafletProvider component manages Leaflet loading and context
 function LeafletProvider(props: { children: ComponentChildren }) {
   if (!IS_BROWSER) {
-    // NOTE: what is the point of returning this component
-    // return <p>Leaflet must be loaded on the client. No children will render</p>;
-    return;
+    // the server called this?
+    return <p hidden />;
   }
   const [value, setValue] = useState<typeof Leaflet | null>(null);
   return (
