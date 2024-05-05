@@ -2,7 +2,6 @@
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "start:check": "deno run -A --check --watch=static/,routes/ dev.ts",
-    "compile-map": "deno run -A scripts/compileMap.ts",
     "create-radio-db": "deno run -A scripts/createRadioDb.ts; deno fmt",
     "create-radio-db:check-update": "deno run -A scripts/createRadioDb.ts check-update",
     "build": "deno run -A dev.ts build",

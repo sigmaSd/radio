@@ -163,8 +163,11 @@ export default function Stations(
           gridTemplateColumns: "repeat(auto-fill,minmax(160px, 1fr))",
         }}
       >
-        {displayStations.value.map((station) => (
+        {displayStations.value.map((station: StationType) => (
           <Station
+            // The database already remove duplicate stations
+            // so its probably fine to use the name as key
+            key={station.name}
             station={station}
             activeStaion={activeStaion}
           />

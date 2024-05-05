@@ -15,11 +15,12 @@ import * as $map from "./routes/map.tsx";
 import * as $search from "./routes/search.tsx";
 import * as $top from "./routes/top.tsx";
 import * as $FavStations from "./islands/FavStations.tsx";
+import * as $Map from "./islands/Map.tsx";
 import * as $StatioMain from "./islands/StatioMain.tsx";
 import * as $StationSearch from "./islands/StationSearch.tsx";
 import * as $Stations from "./islands/Stations.tsx";
 import * as $TopStations from "./islands/TopStations.tsx";
-import type { Manifest } from "$fresh/server.ts";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
@@ -38,6 +39,7 @@ const manifest = {
   },
   islands: {
     "./islands/FavStations.tsx": $FavStations,
+    "./islands/Map.tsx": $Map,
     "./islands/StatioMain.tsx": $StatioMain,
     "./islands/StationSearch.tsx": $StationSearch,
     "./islands/Stations.tsx": $Stations,

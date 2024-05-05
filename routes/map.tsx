@@ -1,4 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
+import MapIsland from "@/islands/Map.tsx";
 
 export default function RadioMap() {
   return (
@@ -12,15 +13,7 @@ export default function RadioMap() {
         />
         <link rel="stylesheet" href="/map/map.css" />
       </Head>
-      <div id="map" />
-      <button
-        type="button"
-        class="bg-green-600 border border-gray-400 rounded-md shadow-sm py-2 px-4 text-white font-bold cursor-pointer inline-block mt-5 w-150 h-30"
-        id="goBtn"
-      >
-        Go!
-      </button>
-      <script type="module" src="/map/map.js" />
+      <MapIsland />
     </>
   );
 }

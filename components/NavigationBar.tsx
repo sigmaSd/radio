@@ -30,7 +30,7 @@ export default function NavigationBar() {
     <nav>
       <ul class="list-none m-0 p-0 overflow-hidden bg-gray-800">
         {items.map((item) => (
-          <li class="float-left">
+          <li key={item.name} class="float-left">
             <a
               class="block text-white text-center py-4 px-6 no-underline"
               href={item.href}
